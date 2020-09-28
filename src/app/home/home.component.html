@@ -1,0 +1,72 @@
+<div>
+  <div class="container">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top " style="background-color: black">
+      <a class="navbar-brand" href="#" (click)="homeToggle()">CHEAPFLIX</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#" (click)="movieToggle()">Movie List </a>
+          </li>
+          <li *ngIf="!signedIn" class="nav-item">
+            <a class="nav-link" href="#" (click)="loginToggle()">Sign In</a>
+          </li>
+          <li *ngIf="!signedIn" class="nav-item">
+            <a class="nav-link" href="#" (click)="registerToggle()">Register</a>
+          </li> 
+          <li *ngIf="signedIn" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#">Welcome {{varname}}</a>
+            <div class="dropdown-menu" >
+              <a class="dropdown-item" href="#" >
+                <i class="fa fa-user"></i>
+                Edit Profile</a>
+            </div>
+          </li>
+          <li *ngIf="signedIn" class="nav-item">
+            <a class="nav-link" (click)="logout()">Log Out</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" box-sizing="border-box"
+           style="color: #919191 ; background-color: #333; border: 2px solid #333;" 
+           placeholder="Search" 
+           aria-label="Search">
+          <button class="btn btn-outline-danger my-2 my-sm-0" 
+          type="submit">Search</button>
+        </form>
+    </nav>
+  </div>
+
+  <div *ngIf="homeMode" style="padding-top: 80px; padding-left: 20px;">
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let tblmovie of tblmovies">
+        <ng-template width=200px height=300px carouselSlide [id]="" >
+        <div class=' carousel-item bg-black dib br1    ma2 grow bw2 shadow-5'
+        style="max-width:220px; max-height:370px ;overflow:hidden;">
+          <img width=200px height=300px class="img-responsive" alt={{tblmovie.aTitle}} src={{tblmovie.aImageLink}} />
+          <div class="text-center">
+            <h6 max-width=200px max-height=320px style="color:white; overflow: hidden;">{{tblmovie.aTitle}}</h6>
+            <p style="color:white;">{{tblmovie.aPrice}}$  
+              {{tblmovie.aPurchasePrice}}$  
+              {{tblmovie.aRating}}⭐
+            </p>
+          </div>
+        </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+
+  <div class="container" *ngIf="movieMode" style="padding-top: 60px;" >
+    <app-tblmovie></app-tblmovie>
+  </div>
+
+  <div style="padding-top: 30px;" *ngIf="loginMode" >
+    <app-login (loggedIn)="isLoggedIn($event)" (userName)="displayUsername($event)"></app-login>
+  </div>
+
+  <div style="padding-top: 30px;" *ngIf="registerMode" >
+    <app-register (loggedIn)="isLoggedIn($event)" 
+      (cancelRegister)="cancelRegisterMode($event)"
+      (userName)="displayUsername($event)">
+    </app-register>
+  </div>
+</div>
