@@ -13,15 +13,26 @@
             <a class="nav-link" href="#" (click)="registerToggle()">Register</a>
           </li> 
           <li *ngIf="signedIn" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#">Welcome {{authService.decodedToken.unique_name | titlecase}}</a>
-            <div class="dropdown-menu" >
+            <a class="nav-link dropdown-toggle" href="#" 
+            role="button" id="dropdownMenuLink" data-toggle="dropdown" 
+            aria-haspopup="true" aria-expanded="false">
+            Welcome {{authService.decodedToken.unique_name | titlecase}}</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="#" >
                 <i class="fa fa-user"></i>
-                Edit Profile</a>
+                Orders
+              </a>
+              <a class="dropdown-item" href="#" >
+                <i class="fa fa-user"></i>
+                Edit Profile
+              </a>
             </div>
           </li>
           <li *ngIf="signedIn" class="nav-item">
-            <a class="nav-link" (click)="logout()">Log Out</a>
+            <a class="nav-link" href="#">Cart</a>
+          </li>
+          <li *ngIf="signedIn" class="nav-item">
+            <a class="nav-link" href="#" (click)="logout()">Log Out</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
