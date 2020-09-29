@@ -12,15 +12,20 @@ import { RegisterComponent } from './register/register.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule , Routes } from '@angular/router';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { MovieCarouselComponent } from './movieCarousel/movieCarousel.component';
+//import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 
 @NgModule({
-  declarations: [					
+  declarations: [						
     AppComponent,
     TblmovieComponent,
       NavComponent,
       LoginComponent,
       HomeComponent,
-      RegisterComponent
+      RegisterComponent,
+      MovieCarouselComponent
    ],
   imports: [
     BrowserModule,
@@ -29,10 +34,11 @@ import { RouterModule , Routes } from '@angular/router';
     CarouselModule,
     BrowserAnimationsModule,
     RouterModule,
+    //BsDropdownModule.forRoot()
   ],
   providers: [
-    AuthService
-    
+    AuthService,
+    ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })

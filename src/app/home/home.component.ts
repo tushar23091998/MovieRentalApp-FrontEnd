@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { AlertifyService } from '../_services/alertify.service';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -15,10 +18,16 @@ export class HomeComponent implements OnInit {
   signedIn = false;
   tblmovies:any;
   varname = null;
-  constructor(private http:HttpClient) { }
+  jwtHelper = new JwtHelperService();
+  constructor(public http:HttpClient, private alertify:AlertifyService, private authService: AuthService) { }
 
   ngOnInit() {
     this.getValues();
+    const token = sessionStorage.getItem('token');
+    if(token){
+      this.authService.decodedToken = this.jwtHelper.decodeToken(token);
+      this.signedIn=true;
+    }
   }
 
   customOptions: OwlOptions = {
@@ -50,7 +59,7 @@ export class HomeComponent implements OnInit {
     this.http.get('http://localhost:5000/api/tblmovies').subscribe(response => {
       this.tblmovies = response;
     }, error =>{
-      console.log(error);
+      this.alertify.error(error);
     });
   }
 
@@ -89,8 +98,7 @@ export class HomeComponent implements OnInit {
 
   isLoggedIn(sign : boolean){
     if(sign==true){
-      const token = localStorage.getItem('token');
-      var validToken = !!token;
+      var validToken = this.authService.loggedIn();
        if(validToken == true){
         this.signedIn= true;
         this.homeMode= true;
@@ -111,8 +119,8 @@ export class HomeComponent implements OnInit {
   }
 
   logout(){
-    localStorage.removeItem('token');
-    console.log('logged out');
+    sessionStorage.removeItem('token');
+    this.alertify.message('Logged out');
     this.signedIn=false;
     this.homeMode= true;
     this.loginMode= false;
