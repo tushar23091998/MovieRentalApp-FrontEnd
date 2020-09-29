@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
+import { InteractionService } from '../_services/interaction.service';
 
 @Component({
   selector: 'app-register',
@@ -9,10 +11,9 @@ import { AuthService } from '../_services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   model: any = {};
-  @Output() cancelRegister = new EventEmitter();
-  @Output() loggingIn = new EventEmitter();
-  @Output() userName = new EventEmitter();
-  constructor(private authService : AuthService,private alertify:AlertifyService) { }
+
+  constructor(private authService : AuthService,private alertify:AlertifyService,
+     private router : Router, private interactionService: InteractionService) { }
 
   ngOnInit() {
   }
@@ -20,9 +21,8 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.model).subscribe(() => {
       this.alertify.success('Registered Successfully');
       this.authService.login(this.model).subscribe(next => {
-        //this.alertify.success('logged in successfully');
-        this.loggingIn.emit(true);
-        this.userName.emit(this.model.username);
+        this.interactionService.nextMessage(true);
+        this.router.navigate(['/home']);
       }, error => {
         this.alertify.error(error);
       });
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
   }
 
   cancel(){
-    this.cancelRegister.emit(false);
+    this.router.navigate(['/home'])
   }
 
 }

@@ -1,38 +1,43 @@
-<div class="text-center login_container mt-3" style="padding-top: 20px;">
-  <div class="mid_container mt-3">
-      <div class="login_div">       
-            <!-- <img src="https://img.icons8.com/cotton/2x/movie-beginning.png" alt="" width="60" height="60"> -->
-            <h1 class="h3 font-weight-normal" style="color:white">𝕮𝖍𝖊𝖆𝖕𝖋𝖑𝖎𝖝</h1>      
-            <form  #registerForm ="ngForm" class="form" style="margin-top:-20px;" (ngSubmit)="register()"> 
-            <p class="username"> 
-              <label for="username">𝕎𝔼 𝔸ℝ𝔼 𝔸𝕊 ℂℍ𝔼𝔸ℙ 𝔸𝕊 ℂℍ𝔼𝔸ℙ ℂ𝔸ℕ 𝔾𝔼𝕋 </label> 
-            </p> 
-            <p class="username"> 
-              <label for="username">ᴜsᴇʀɴᴀᴍᴇ </label> 
-                <br/>
-              <input  name="username" type="text" id="username" placeholder="Username" required [(ngModel)]="model.username" />             
-            </p> 
-            <p class="pass"> 
-              <label for="password">ᴘᴀssᴡᴏʀᴅ</label> 
-                <br/>
-              <input name="password" type="password" id="password" placeholder="Password" required [(ngModel)]="model.password"/>             
-            </p> 
-            <p class="name"> 
-              <label for="name">🇳‌🇦‌🇲‌🇪‌</label> 
-                <br/>
-              <input name="name" type="text" id="name" placeholder="Name" required [(ngModel)]="model.name"/>             
-            </p> 
-            <p class="email"> 
-              <label for="email">🇪‌🇲‌🇦‌🇮‌🇱‌</label> 
-                <br/>
-              <input name="email" type="email" id="email" placeholder="Email" required [(ngModel)]="model.email"/>             
-            </p> 
-            <!-- <button  class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sign Up</button> -->
-            <div class="form-group text-center">
-              <button [disabled]="!registerForm.valid" class="btn btn-outline-danger my-2 my-sm-0 mr-2" type="submit">Sign Up</button>
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="cancel()">Cancel</button>
-            </div>
-         </form>      
-        </div>   
+<div style="padding-top: 30px;">
+  <div class="text-center login_container mt-3" style="padding-top: 20px;">
+    <div class="mid_container mt-3">
+      <div class="login_div">
+        <!-- <img src="https://img.icons8.com/cotton/2x/movie-beginning.png" alt="" width="60" height="60"> -->
+        <h1 class="h3 font-weight-normal" style="color:white">𝕮𝖍𝖊𝖆𝖕𝖋𝖑𝖎𝖝</h1>
+        <form #registerForm="ngForm" class="form" style="margin-top:-20px;" (ngSubmit)="register()">
+          <p class="username">
+            <label for="username">𝕎𝔼 𝔸ℝ𝔼 𝔸𝕊 ℂℍ𝔼𝔸ℙ 𝔸𝕊 ℂℍ𝔼𝔸ℙ ℂ𝔸ℕ 𝔾𝔼𝕋 </label>
+          </p>
+          <p class="username">
+            <label for="username">ᴜsᴇʀɴᴀᴍᴇ </label>
+            <br />
+            <input name="username" type="text" id="username" placeholder="Username" required
+              [(ngModel)]="model.username" />
+          </p>
+          <p class="pass">
+            <label for="password">ᴘᴀssᴡᴏʀᴅ</label>
+            <br />
+            <input name="password" type="password" id="password" placeholder="Password" required
+              [(ngModel)]="model.password" />
+          </p>
+          <p class="name">
+            <label for="name">🇳‌🇦‌🇲‌🇪‌</label>
+            <br />
+            <input name="name" type="text" id="name" placeholder="Name" required [(ngModel)]="model.name" />
+          </p>
+          <p class="email">
+            <label for="email">🇪‌🇲‌🇦‌🇮‌🇱‌</label>
+            <br />
+            <input name="email" type="email" id="email" placeholder="Email" required [(ngModel)]="model.email" />
+          </p>
+          <!-- <button  class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sign Up</button> -->
+          <div class="form-group text-center">
+            <button [disabled]="!registerForm.valid" class="btn btn-outline-danger my-2 my-sm-0 mr-2" type="submit">Sign
+              Up</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="cancel()">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

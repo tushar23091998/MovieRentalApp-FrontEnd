@@ -1,67 +1,7 @@
 <div>
-  <div class="container">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top " style="background-color: black">
-      <a class="navbar-brand" href="#" (click)="homeToggle()">CHEAPFLIX</a>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#" (click)="movieToggle()">Movie List </a>
-          </li>
-          <li *ngIf="!signedIn" class="nav-item">
-            <a class="nav-link" href="#" (click)="loginToggle()">Sign In</a>
-          </li>
-          <li *ngIf="!signedIn" class="nav-item">
-            <a class="nav-link" href="#" (click)="registerToggle()">Register</a>
-          </li> 
-          <li *ngIf="signedIn" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" 
-            role="button" id="dropdownMenuLink" data-toggle="dropdown" 
-            aria-haspopup="true" aria-expanded="false">
-            Welcome {{authService.decodedToken.unique_name | titlecase}}</a>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#" >
-                <i class="fa fa-user"></i>
-                Orders
-              </a>
-              <a class="dropdown-item" href="#" >
-                <i class="fa fa-user"></i>
-                Edit Profile
-              </a>
-            </div>
-          </li>
-          <li *ngIf="signedIn" class="nav-item">
-            <a class="nav-link" href="#">Cart</a>
-          </li>
-          <li *ngIf="signedIn" class="nav-item">
-            <a class="nav-link" href="#" (click)="logout()">Log Out</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" box-sizing="border-box"
-           style="color: #919191 ; background-color: #333; border: 2px solid #333;" 
-           placeholder="Search" 
-           aria-label="Search">
-          <button class="btn btn-outline-danger my-2 my-sm-0" 
-          type="submit">Search</button>
-        </form>
-    </nav>
-  </div>
-
-  <div *ngIf="homeMode" >
+ 
+  <div>
     <app-movieCarousel></app-movieCarousel>
   </div>
 
-  <div class="container" *ngIf="movieMode" style="padding-top: 60px;" >
-    <app-tblmovie></app-tblmovie>
-  </div>
-
-  <div style="padding-top: 30px;" *ngIf="loginMode" >
-    <app-login (loggingIn)="isLoggedIn($event)" (userName)="displayUsername($event)"></app-login>
-  </div>
-
-  <div style="padding-top: 30px;" *ngIf="registerMode" >
-    <app-register (loggingIn)="isLoggedIn($event)" 
-      (cancelRegister)="cancelRegisterMode($event)"
-      (userName)="displayUsername($event)">
-    </app-register>
-  </div>
-</div>
+</div> 

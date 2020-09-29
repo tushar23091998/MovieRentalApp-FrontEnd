@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule , Routes } from '@angular/router';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { MovieCarouselComponent } from './movieCarousel/movieCarousel.component';
+import { appRoutes } from './routes';
 //import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
@@ -33,8 +34,7 @@ import { MovieCarouselComponent } from './movieCarousel/movieCarousel.component'
     FormsModule,
     CarouselModule,
     BrowserAnimationsModule,
-    RouterModule,
-    //BsDropdownModule.forRoot()
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     AuthService,

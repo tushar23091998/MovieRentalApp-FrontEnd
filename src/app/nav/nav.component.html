@@ -1,29 +1,39 @@
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top " style="background-color: black">
-  <button class="navbar-brand" >CHEAPFLIX</button>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top " style="background-color: black">
+  <a class="navbar-brand" [routerLink]="['/home']">CHEAPFLIX</a>
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <button class="nav-link" >Movie List </button>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/tblmovie']">Movie List </a>
       </li>
-      <li  class="nav-item">
-        <button class="nav-link" >Sign In</button>
+      <li *ngIf="!signedIn" class="nav-item" routerLinkActive="active">
+        <a class="nav-link"  [routerLink]="['/login']">Sign In</a>
       </li>
-      <li  class="nav-item">
-        <button class="nav-link" >Register</button>
+      <li *ngIf="!signedIn" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/register']" >Register</a>
       </li> 
-      <li  class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle">Welcome user</a>
-        <div class="dropdown-menu" >
-          <a class="dropdown-item" href="#" >
+      <li *ngIf="signedIn" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" 
+        role="button" id="dropdownMenuLink" data-toggle="dropdown" 
+        aria-haspopup="true" aria-expanded="false">
+        Welcome {{authService.decodedToken.unique_name | titlecase}}</a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="#"  >
             <i class="fa fa-user"></i>
-            Edit Profile</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">
-            <i class="fa fa-sign-out"></i>
-            Logout</a>
+            Orders
+          </a>
+          <a class="dropdown-item" href="#"  >
+            <i class="fa fa-user"></i>
+            Edit Profile
+          </a>
         </div>
       </li>
-      <li  class="nav-item">
-        <a class="nav-link" >Log Out</a>
+      <li *ngIf="signedIn" class="nav-item">
+        <a class="nav-link" href="#">Admin</a>
+      </li>
+      <li *ngIf="signedIn" class="nav-item">
+        <a class="nav-link" href="#">Cart</a>
+      </li>
+      <li *ngIf="signedIn" class="nav-item">
+        <a class="nav-link" href="#" (click)="logout()">Log Out</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">

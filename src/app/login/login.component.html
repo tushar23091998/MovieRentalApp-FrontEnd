@@ -1,24 +1,29 @@
-<div class="text-center login_container mt-3" style="padding-top: 20px;">
-  <div class="mid_container mt-3" style="padding-top: 70px;">
-      <div class="login_div">       
-            <!-- <img  src="https://img.icons8.com/cotton/2x/movie-beginning.png" alt="" width="60" height="60"> -->
-            <h1 class="h3 font-weight-normal" style="color:white">𝕮𝖍𝖊𝖆𝖕𝖋𝖑𝖎𝖝</h1>      
-            <form  #loginForm ="ngForm" class="form" style="margin-top:-20px;" id="form1" (ngSubmit)="login()"> 
-            <p class="username"> 
-              <label for="username">𝕎𝔼 𝔸ℝ𝔼 𝔸𝕊 ℂℍ𝔼𝔸ℙ 𝔸𝕊 ℂℍ𝔼𝔸ℙ ℂ𝔸ℕ 𝔾𝔼𝕋 </label> 
-            </p> 
-            <p class="username"> 
-              <label for="username">ᴜsᴇʀɴᴀᴍᴇ </label> 
-                <br/>
-              <input  name="username" type="text" id="username" placeholder="Username" required [(ngModel)]="model.username" />             
-            </p> 
-            <p class="pass"> 
-              <label for="pass">ᴘᴀssᴡᴏʀᴅ</label> 
-                <br/>
-              <input name="password" type="password" id="password" placeholder="Password" required [(ngModel)]="model.password"/>             
-            </p> 
-            <button [disabled]="!loginForm.valid" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sign In</button> 
-         </form>      
-        </div>   
+<div style="padding-top: 30px;">
+  <div class="text-center login_container mt-3" style="padding-top: 20px;">
+    <div class="mid_container mt-3" style="padding-top: 70px;">
+      <div class="login_div">
+        <!-- <img  src="https://img.icons8.com/cotton/2x/movie-beginning.png" alt="" width="60" height="60"> -->
+        <h1 class="h3 font-weight-normal" style="color:white">𝕮𝖍𝖊𝖆𝖕𝖋𝖑𝖎𝖝</h1>
+        <form #loginForm="ngForm" class="form" style="margin-top:-20px;" id="form1" (ngSubmit)="login()">
+          <p class="username">
+            <label for="username">𝕎𝔼 𝔸ℝ𝔼 𝔸𝕊 ℂℍ𝔼𝔸ℙ 𝔸𝕊 ℂℍ𝔼𝔸ℙ ℂ𝔸ℕ 𝔾𝔼𝕋 </label>
+          </p>
+          <p class="username">
+            <label for="username">ᴜsᴇʀɴᴀᴍᴇ </label>
+            <br />
+            <input name="username" type="text" id="username" placeholder="Username" required
+              [(ngModel)]="model.username" />
+          </p>
+          <p class="pass">
+            <label for="pass">ᴘᴀssᴡᴏʀᴅ</label>
+            <br />
+            <input name="password" type="password" id="password" placeholder="Password" required
+              [(ngModel)]="model.password" />
+          </p>
+          <button [disabled]="!loginForm.valid" class="btn btn-outline-danger my-2 my-sm-0" type="submit">
+            Sign In</button>
+        </form>
+      </div>
     </div>
+  </div>
 </div>
