@@ -15,7 +15,7 @@ export class TblmovieComponent implements OnInit {
   }
 
   getValues(){
-    this.http.get('http://localhost:5000/api/tblmovies').subscribe(response => {
+    this.http.get('http://localhost:5000/api/movies').subscribe(response => {
       this.tblmovies = response;
     }, error =>{
       console.log(error);

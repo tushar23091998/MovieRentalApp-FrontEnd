@@ -16,17 +16,25 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { MovieCarouselComponent } from './movieCarousel/movieCarousel.component';
 import { appRoutes } from './routes';
 //import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { AdminComponent } from './Admin/Admin.component';
+import { UserComponent } from './User/User.component';
+import { JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
-  declarations: [						
+  declarations: [								
     AppComponent,
     TblmovieComponent,
       NavComponent,
       LoginComponent,
       HomeComponent,
       RegisterComponent,
-      MovieCarouselComponent
+      MovieCarouselComponent,
+      AdminComponent,
+      UserComponent
    ],
   imports: [
     BrowserModule,
@@ -34,7 +42,14 @@ import { appRoutes } from './routes';
     FormsModule,
     CarouselModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    JwtModule.forRoot({
+      config:{
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:5000'],
+        disallowedRoutes: ['localhost:5000/api/auth']
+      }
+    })
   ],
   providers: [
     AuthService,

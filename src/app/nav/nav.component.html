@@ -26,8 +26,8 @@
           </a>
         </div>
       </li>
-      <li *ngIf="signedIn" class="nav-item">
-        <a class="nav-link" href="#">Admin</a>
+      <li *ngIf="signedIn" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/admin']">Admin</a>
       </li>
       <li *ngIf="signedIn" class="nav-item">
         <a class="nav-link" href="#">Cart</a>

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -13,7 +14,7 @@ import { InteractionService } from '../_services/interaction.service';
 export class NavComponent implements OnInit {
   signedIn = false;
   jwtHelper = new JwtHelperService();
-  constructor(private authService: AuthService, private router: Router,
+  constructor(private http:HttpClient, private authService: AuthService, private router: Router,
     private alertify: AlertifyService, private interactionService: InteractionService) 
     { }
 
@@ -42,4 +43,5 @@ export class NavComponent implements OnInit {
     this.signedIn=false;
     this.router.navigate(['/home']);
   }
+
 }

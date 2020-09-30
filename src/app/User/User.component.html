@@ -1,0 +1,32 @@
+<div class="container">
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Address</th>
+        <th scope="col">Age</th>
+        <th scope="col">Admin</th>
+        <th scope="col">Movies Rented</th>
+        <th scope="col">Orders</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row">{{user.aCustomerId}}</th>
+        <td>{{user.aname}}</td>
+        <td>{{user.aUsername}}</td>
+        <td>{{user.aEmail}}</td>
+        <td>{{user.aPhone}}</td>
+        <td>{{user.aAddress}}</td>
+        <td>{{user.age}}</td>
+        <td>{{user.aAdmin}}</td>
+        <td>{{user.aMoviesRented}}</td>
+        <td><a class="nav-link" >Orders</a></td>
+      </tr> 
+    </tbody>
+  </table>
+</div>
