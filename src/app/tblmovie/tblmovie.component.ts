@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-tblmovie',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TblmovieComponent implements OnInit {
   tblmovies: any;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private alertify:AlertifyService) { }
 
   ngOnInit() {
     this.getValues();
@@ -18,7 +19,7 @@ export class TblmovieComponent implements OnInit {
     this.http.get('http://localhost:5000/api/movies').subscribe(response => {
       this.tblmovies = response;
     }, error =>{
-      console.log(error);
+      this.alertify.error(error);
     });
   }
 

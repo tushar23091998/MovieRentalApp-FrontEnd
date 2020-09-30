@@ -1,0 +1,17 @@
+<div style="padding-top: 60px;">
+  <p style="color:blanchedalmond">
+    <img alt={{movie.aTitle}} src="https://github.com/StymiedSloth/Fakeflix---A-simple-Movie-Rental-Purchase-and-Watching-Website/blob/master/Website%20Code/images/django.jpg?raw=true" /><br>
+    {{movie.aMovieId}}<br>
+    {{movie.aTitle}}<br>
+    {{movie.aMovieDescription}}<br>
+    {{movie.aDuration}}<br>
+    {{movie.aPrice}}<br>
+    {{movie.aPurchasePrice}}<br>
+    {{movie.aRating}}<br>
+    {{movie.aGenre}}<br>
+    {{movie.tblMovieActorMapping}}<br>
+    {{movie.tblMovieDirectorMapping}}<br>
+    <img width=200px height=300px alt={{movie.aTitle}} src={{movie.aImageLink}} /><br>
+    <iframe width=560px height=315px src="{{movie.aTrailerLink}}" frameborder="0" allowfullscreen></iframe>
+  </p>
+</div>

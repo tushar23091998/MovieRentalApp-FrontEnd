@@ -2,7 +2,7 @@
   <a class="navbar-brand" [routerLink]="['/home']">CHEAPFLIX</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/tblmovie']">Movie List </a>
+        <a class="nav-link" [routerLink]="['/movies']">Movie List </a>
       </li>
       <li *ngIf="!signedIn" class="nav-item" routerLinkActive="active">
         <a class="nav-link"  [routerLink]="['/login']">Sign In</a>

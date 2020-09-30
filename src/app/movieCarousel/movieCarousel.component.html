@@ -4,7 +4,7 @@
       <ng-template width=200px height=300px carouselSlide [id]="" >
       <div class=' carousel-item bg-black dib br1    ma2 grow bw2 shadow-5'
       style="max-width:220px; max-height:370px ;overflow:hidden;">
-        <img width=200px height=300px alt={{tblmovie.aTitle}} src={{tblmovie.aImageLink}} />
+        <a [routerLink]="['/movies',tblmovie.aMovieId]"><img width=200px height=300px alt={{tblmovie.aTitle}} src={{tblmovie.aImageLink}} /></a>
         <div class="text-center">
           <h6 max-width=200px max-height=320px style="color:white; overflow: hidden;">{{tblmovie.aTitle}}</h6>
           <p style="color:white;">{{tblmovie.aPrice}}$  

@@ -19,13 +19,14 @@ import { appRoutes } from './routes';
 import { AdminComponent } from './Admin/Admin.component';
 import { UserComponent } from './User/User.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
 @NgModule({
-  declarations: [								
+  declarations: [									
     AppComponent,
     TblmovieComponent,
       NavComponent,
@@ -34,7 +35,8 @@ export function tokenGetter() {
       RegisterComponent,
       MovieCarouselComponent,
       AdminComponent,
-      UserComponent
+      UserComponent,
+      MovieDetailComponent
    ],
   imports: [
     BrowserModule,
