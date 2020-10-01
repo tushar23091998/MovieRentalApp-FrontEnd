@@ -1,4 +1,5 @@
+import { DirectorName } from './directorName';
+
 export interface Director {
-    aDirectorId: number;
-    aDirectorName: string;
+    directors: DirectorName[];
 }

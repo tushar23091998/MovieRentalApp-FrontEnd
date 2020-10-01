@@ -1,4 +1,5 @@
+import { ActorName } from './actorName';
+
 export interface Actor {
-    aActorId: number;
-    aActorName: string;
+    actors: ActorName[];
 }

@@ -20,6 +20,8 @@ import { AdminComponent } from './Admin/Admin.component';
 import { UserComponent } from './User/User.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { MovieService } from './_services/movie.service';
+import { UserService } from './_services/user.service';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -55,6 +57,8 @@ export function tokenGetter() {
   ],
   providers: [
     AuthService,
+    MovieService,
+    UserService,
     ErrorInterceptorProvider
   ],
   bootstrap: [AppComponent]

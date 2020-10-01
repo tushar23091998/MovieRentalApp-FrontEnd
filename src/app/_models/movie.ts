@@ -13,6 +13,6 @@ export interface Movie {
     aTrailerLink: string;
     aGenre: string;
     aWideImage: string;
-    actors: Actor[];
-    director: Director[];
+    actorMapping: Actor[];
+    directorMapping: Director[];
 }
