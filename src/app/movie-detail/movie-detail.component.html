@@ -2,26 +2,79 @@
   <div>
     <img alt={{movie.aTitle}} src={{movie.aWideImage}} />
   </div>
-  <p style="color:blanchedalmond">
+  <div>
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="card" style="background-color: black; color:white">
+            <img class="card-img-top img-thumbnail" alt={{movie.aTitle}} src={{movie.aImageLink}} />
+            <div class="card-body">
+              <div>
+                <strong>Rental Price:</strong>
+                <p> {{movie.aPrice}} $</p>
+              </div>
+              <div>
+                <strong>Purchase Price:</strong>
+                <p> {{movie.aPurchasePrice}} $</p>
+              </div>
+              <div>
+                <strong>Rating:</strong>
+                <p> {{movie.aRating}} ⭐</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-8 " style="background-color: black; color:white; padding-top: 10px;">
+          <div>
+            <strong>{{movie.aTitle}}</strong>
+            <br>
+            <br>
+          </div>
+          <div>
+            <strong>Description:</strong>
+            <br>
+            <p> {{movie.aMovieDescription}} </p>
+            <br>
+          </div>
+          <div>
+            <strong>Duration:</strong>
+            <br>
+            <p> {{movie.aDuration}}</p>
+            <br>
+          </div>
+          <div>
+            <strong>Genre:</strong>
+            <br>
+            <p> {{movie.aGenre}}</p>
+            <br>
+          </div>
+          <div>
+            <table>
+              <strong>Cast:</strong>
+              <tr *ngFor="let index of movie.tblMovieActorMapping; index as i">
+                <td>{{movie.tblMovieActorMapping[i].aActor.aActorName}}</td>
+              </tr>
+            </table>
+            <br>
+            <table>
+              <strong>Directors:</strong>
+              <tr *ngFor="let index of movie.tblMovieDirectorMapping; index as i">
+                <td>{{movie.tblMovieDirectorMapping[i].aDirector.aDirectorName}}</td>
+              </tr>
+            </table>
+            <br>
+          </div>
+        </div>  
+      </div>
+    </div>
+    <div class="d-flex justify-content-center" style="padding-top: 20px;">
+      <iframe width=560px height=315px [src]='safeUrl' frameborder="0" allowfullscreen></iframe>
+    </div>
 
-    {{movie.aTitle}}<br>
-    {{movie.aMovieDescription}}<br>
-    {{movie.aDuration}}<br>
-    {{movie.aPrice}}<br>
-    {{movie.aPurchasePrice}}<br>
-    {{movie.aRating}}<br>
-    {{movie.aGenre}}<br>
-    <img width=200px height=300px alt={{movie.aTitle}} src={{movie.aImageLink}} /><br>
-  </p>
-  <table style="color:blanchedalmond">
-    <tr *ngFor="let index of movie.tblMovieActorMapping; index as i">
-      <td>{{movie.tblMovieActorMapping[i].aActor.aActorName}}</td>
-    </tr>
-  </table>
-  <table style="color:blanchedalmond">
-    <tr *ngFor="let index of movie.tblMovieDirectorMapping; index as i">
-      <td>{{movie.tblMovieDirectorMapping[i].aDirector.aDirectorName}}</td>
-    </tr>
-  </table>
-  <iframe width=560px height=315px [src]='safeUrl' frameborder="0" allowfullscreen></iframe>
-</div>
+  </div>
+</div>  
+
+    
+
+
+  

@@ -12,7 +12,7 @@ export const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'admin', component: AdminComponent },
-    { path: 'movies', component: TblmovieComponent, canActivate: [AuthGuard] },
-    { path: 'movies/:id', component: MovieDetailComponent},
+    { path: 'movies', component: TblmovieComponent },
+    { path: 'movies/:id', component: MovieDetailComponent, canActivate: [AuthGuard]},
     { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
