@@ -22,13 +22,19 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { MovieService } from './_services/movie.service';
 import { UserService } from './_services/user.service';
+import { AlertifyService } from './_services/alertify.service';
+import { AuthGuard } from './_guards/auth.guard';
+import { MovieDetailResolver } from './_resolvers/movie-detail.resolver';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserDetailResolver } from './_resolvers/user-detail.resolver';
+import { UserListResolver } from './_resolvers/user-list.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
 @NgModule({
-  declarations: [									
+  declarations: [										
     AppComponent,
     TblmovieComponent,
       NavComponent,
@@ -38,7 +44,8 @@ export function tokenGetter() {
       MovieCarouselComponent,
       AdminComponent,
       UserComponent,
-      MovieDetailComponent
+      MovieDetailComponent,
+      UserDetailComponent
    ],
   imports: [
     BrowserModule,
@@ -57,9 +64,14 @@ export function tokenGetter() {
   ],
   providers: [
     AuthService,
+    AlertifyService,
     MovieService,
     UserService,
-    ErrorInterceptorProvider
+    AuthGuard,
+    MovieDetailResolver,
+    UserDetailResolver,
+    UserListResolver,
+    ErrorInterceptorProvider,
   ],
   bootstrap: [AppComponent]
 })
