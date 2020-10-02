@@ -5,7 +5,7 @@ export interface User {
     aAddress?: string;
     age?: number;
     aEmail: string;
-    aPhone: string;
+    aPhone?: string;
     aname: string;
     aUsername: string;
     aMoviesRented?: number;

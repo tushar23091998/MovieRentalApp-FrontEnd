@@ -28,13 +28,16 @@ import { MovieDetailResolver } from './_resolvers/movie-detail.resolver';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
 import { UserListResolver } from './_resolvers/user-list.resolver';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserEditResolver } from './_resolvers/user-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
 @NgModule({
-  declarations: [										
+  declarations: [											
     AppComponent,
     TblmovieComponent,
       NavComponent,
@@ -45,7 +48,8 @@ export function tokenGetter() {
       AdminComponent,
       UserComponent,
       MovieDetailComponent,
-      UserDetailComponent
+      UserDetailComponent,
+      UserEditComponent
    ],
   imports: [
     BrowserModule,
@@ -69,8 +73,10 @@ export function tokenGetter() {
     UserService,
     AuthGuard,
     MovieDetailResolver,
+    PreventUnsavedChanges,
     UserDetailResolver,
     UserListResolver,
+    UserEditResolver,
     ErrorInterceptorProvider,
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,61 @@
+<div class="container" style="padding-top: 60px;">
+    <div class="row" style="color: whitesmoke; padding-left: 20px;">
+        <div class="col-sm-4">
+            <h1>{{user.aname | titlecase}}'s Profile</h1>
+            <div class="card" style="background-color: black; color:white">
+            <img class="card-img-top img-thumbnail" alt={{user.aname}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_3FlCnFuOd9nXxC6_oWIjF1-PqTiILFS9Ig&usqp=CAU" />
+            <div class="card-body">
+              <div>
+                <strong>Username:</strong>
+                <p> {{user.aUsername}}</p>
+              </div>
+              <div>
+                <strong>Email:</strong>
+                <p> {{user.aEmail}}</p>
+            </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-sm-8" style="padding-top: 40px; background-color: black; color:white;">
+            <div *ngIf="editForm.dirty" class="alert alert-info">
+                <strong>Information:</strong>You have made some changes, Any unsaved changes will be lost!
+            </div>
+            <div>
+                <h4>Edit Profile:</h4>
+                <br>
+            </div>
+            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+                <div>
+                    <strong>Name: </strong>
+                    <br>
+                    <textarea name="aname" rows="1" class="form-control" [(ngModel)]="user.aname"></textarea>
+                    <br>
+                </div>
+                <div>
+                    <strong>Address:</strong>
+                    <br>
+                    <textarea name="aAddress" rows="1" class="form-control" [(ngModel)]="user.aAddress"></textarea>
+                    <br>
+                  </div>
+                  <div>
+                    <strong>Phone:</strong>
+                    <br>
+                    <textarea name="aPhone" rows="1" class="form-control" [(ngModel)]="user.aPhone"></textarea>
+                    <br>
+                    <br>
+                  </div>
+                </form>
+                <div>
+                    <strong>No. of Movies Rented:</strong>
+                    <p>  {{user.aMoviesRented}}</p>
+                </div>
+                <div>
+                    <strong>Age:</strong>
+                    <p> {{user.age}}</p>
+                </div>
+                <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-outline-success w-100 my-2 my-sm-0"> Save Changes</button>
+        </div>
+    </div> 
+</div>
+
+

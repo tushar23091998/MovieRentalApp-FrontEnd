@@ -16,11 +16,11 @@
         aria-haspopup="true" aria-expanded="false">
         Welcome {{authService.decodedToken.unique_name | titlecase}}</a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="#"  >
+          <a class="dropdown-item" [routerLink]="['/users',authService.decodedToken.nameid]"  >
             <i class="fa fa-user"></i>
             Orders
           </a>
-          <a class="dropdown-item" href="#"  >
+          <a class="dropdown-item" [routerLink]="['/user/edit']"  >
             <i class="fa fa-user"></i>
             Edit Profile
           </a>

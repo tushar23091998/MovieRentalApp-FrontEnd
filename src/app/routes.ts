@@ -6,21 +6,34 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { RegisterComponent } from './register/register.component';
 import { TblmovieComponent } from './tblmovie/tblmovie.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserComponent } from './User/User.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
+import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { UserListResolver } from './_resolvers/user-list.resolver';
 
 export const appRoutes: Routes = [
-    { path: '', component: HomeComponent },
+    { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'admin', component: AdminComponent },
+
     { path: 'movies', component: TblmovieComponent },
-    { path: 'users', component: UserComponent,canActivate: [AuthGuard]
-    ,resolve: {users: UserListResolver}},
-    { path: 'movies/:id', component: MovieDetailComponent, canActivate: [AuthGuard]},
-    { path: 'users/:id', component: UserDetailComponent,canActivate: [AuthGuard]
-    ,resolve: {user: UserDetailResolver}},
-    { path: '**', redirectTo: '', pathMatch: 'full' },
+    { path: '' ,
+    runGuardsAndResolvers:'always',
+    canActivate: [AuthGuard],
+    children:[
+        { path: 'users', component: UserComponent
+        ,resolve: {users: UserListResolver}},
+        {path: 'user/edit', component: UserEditComponent
+        ,resolve: {user: UserEditResolver}
+        ,canDeactivate:[PreventUnsavedChanges]},
+        { path: 'admin', component: AdminComponent },
+        { path: 'movies/:id', component: MovieDetailComponent},
+        { path: 'users/:id', component: UserDetailComponent
+        ,resolve: {user: UserDetailResolver}}
+    ]
+    },
+    { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
