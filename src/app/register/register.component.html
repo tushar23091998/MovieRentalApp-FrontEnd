@@ -4,40 +4,92 @@
       <div class="login_div">
         <!-- <img src="https://img.icons8.com/cotton/2x/movie-beginning.png" alt="" width="60" height="60"> -->
         <h1 class="h3 font-weight-normal" style="color:white">𝕮𝖍𝖊𝖆𝖕𝖋𝖑𝖎𝖝</h1>
-        <form #registerForm="ngForm" class="form" style="margin-top:-20px;" (ngSubmit)="register()">
-          <p class="username">
+        <form [formGroup]="registerForm" class="form" style="margin-top:-20px;" (ngSubmit)="register()">
+          <div class="username">
             <label for="username">𝕎𝔼 𝔸ℝ𝔼 𝔸𝕊 ℂℍ𝔼𝔸ℙ 𝔸𝕊 ℂℍ𝔼𝔸ℙ ℂ𝔸ℕ 𝔾𝔼𝕋 </label>
-          </p>
-          <p class="username">
-            <label for="username">ᴜsᴇʀɴᴀᴍᴇ </label>
-            <br />
-            <input name="username" type="text" id="username" placeholder="Username" required
-              [(ngModel)]="model.username" />
-          </p>
-          <p class="pass">
+          </div>
+          
+          <div class="username">
+            <label for="aUsername">ᴜsᴇʀɴᴀᴍᴇ </label>
+            <br>
+            <input formControlName="aUsername" 
+            [ngClass]="{'is-invalid': registerForm.get('aUsername').errors  &&  
+            registerForm.get('aUsername').touched}"
+            type="text" id="aUsername" placeholder="Username">
+            <div class="invalid-feedback">Please choose a username</div>
+          </div>
+
+          <div class="pass">
             <label for="password">ᴘᴀssᴡᴏʀᴅ</label>
+            <br>
+            <input formControlName="password"
+            [ngClass]="{'is-invalid': registerForm.get('password').errors  &&  
+            registerForm.get('password').touched}" 
+            type="password" id="password" placeholder="Password">
+            <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('required')  &&  
+            registerForm.get('password').touched">Password is required</div>
+            <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('minlength')  &&  
+            registerForm.get('password').touched">Password must be at least 6 characters long</div>
+            <div class="invalid-feedback" *ngIf="registerForm.get('password').hasError('maxlength')  &&  
+            registerForm.get('password').touched">Password can have at most 12 characters </div>
+          </div>
+
+          <div class="pass">
+            <label for="password">🇨‌🇴‌🇳‌🇫‌🇮‌🇷‌🇲‌ 🇵‌🇦‌🇸‌🇸‌🇼‌🇴‌🇷‌🇩‌</label>
+            <br>
+            <input formControlName="confirmPassword"
+            [ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors  &&  
+            registerForm.get('confirmPassword').touched
+            || registerForm.get('confirmPassword').touched
+            && registerForm.hasError('mismatch')}"
+            type="password" placeholder="Confirm Password">
+            <div class="invalid-feedback" *ngIf="registerForm.get('confirmPassword').hasError('required')  &&  
+            registerForm.get('confirmPassword').touched">Password is required</div>
+            <div class="invalid-feedback" *ngIf="registerForm.hasError('mismatch')  &&  
+            registerForm.get('confirmPassword').touched">Passwords must match</div>
+          </div>
+          
+          <div class="name">
+            <label for="aname">🇳‌🇦‌🇲‌🇪‌</label>
+            <br>
+            <input formControlName="aname" 
+            [ngClass]="{'is-invalid': registerForm.get('aname').errors  &&  
+            registerForm.get('aname').touched}"
+            type="text" id="aname" placeholder="Name">
+            <div class="invalid-feedback" *ngIf="registerForm.get('aname').hasError('required')  &&  
+            registerForm.get('aname').touched">This field cannot be left empty</div>
+          </div>
+
+          <div class="aEmail">
+            <label for="aEmail">🇪‌🇲‌🇦‌🇮‌🇱‌</label>
             <br />
-            <input name="password" type="password" id="password" placeholder="Password" required
-              [(ngModel)]="model.password" />
-          </p>
-          <p class="name">
-            <label for="name">🇳‌🇦‌🇲‌🇪‌</label>
+            <input formControlName="aEmail"
+            [ngClass]="{'is-invalid': registerForm.get('aEmail').errors  &&  
+            registerForm.get('aEmail').touched}"
+            type="email" id="aEmail" placeholder="Email">
+            <div class="invalid-feedback" *ngIf="registerForm.get('aEmail').hasError('required')  &&  
+            registerForm.get('aEmail').touched">Email is required</div>
+            <div class="invalid-feedback" *ngIf="registerForm.get('aEmail').hasError('email')  &&  
+            registerForm.get('aEmail').touched">Must be a valid email address</div>
+          </div>
+
+          <div class="email">
+            <label for="aDob">🇩‌🇴‌🇧‌‌</label>
             <br />
-            <input name="name" type="text" id="name" placeholder="Name" required [(ngModel)]="model.name" />
-          </p>
-          <p class="email">
-            <label for="email">🇪‌🇲‌🇦‌🇮‌🇱‌</label>
-            <br />
-            <input name="email" type="email" id="email" placeholder="Email" required [(ngModel)]="model.email" />
-          </p>
+            <input [ngClass]="{'is-invalid': registerForm.get('aDob').errors && registerForm.get('aDob').touched}" 
+             placeholder="Date of Birth" formControlName="aDob" id="aDob" type="date" >
+            <div class="invalid-feedback" *ngIf="registerForm.get('aDob').touched && registerForm.get('aDob').hasError('required')">Date of Birth is required</div>
+          </div>
+
           <!-- <button  class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sign Up</button> -->
-          <div class="form-group text-center">
+          <div class="form-group text-center" style="padding-top: 20px;">
             <button [disabled]="!registerForm.valid" class="btn btn-outline-danger my-2 my-sm-0 mr-2" type="submit">Sign
               Up</button>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="cancel()">Cancel</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="onReset()">Cancel</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+

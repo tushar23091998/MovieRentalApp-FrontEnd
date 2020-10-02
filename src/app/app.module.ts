@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { TblmovieComponent } from './tblmovie/tblmovie.component';
 import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
@@ -55,6 +55,7 @@ export function tokenGetter() {
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     CarouselModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),

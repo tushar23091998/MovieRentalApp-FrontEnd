@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../_models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,8 @@ export class AuthService {
       })
     );
   }
-  register(model:any){
-    return this.http.post(this.baseUrl + 'register',model);
+  register(user:User){
+    return this.http.post(this.baseUrl + 'register',user);
   }
 
   loggedIn(){

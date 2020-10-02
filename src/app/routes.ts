@@ -18,22 +18,21 @@ export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-
     { path: 'movies', component: TblmovieComponent },
-    { path: '' ,
-    runGuardsAndResolvers:'always',
-    canActivate: [AuthGuard],
-    children:[
+    // { path: '' ,
+    // runGuardsAndResolvers:'always',
+    // canActivate: [AuthGuard],
+    // children:[
         { path: 'users', component: UserComponent
-        ,resolve: {users: UserListResolver}},
+        ,resolve: {users: UserListResolver}, canActivate: [AuthGuard]},
         {path: 'user/edit', component: UserEditComponent
         ,resolve: {user: UserEditResolver}
-        ,canDeactivate:[PreventUnsavedChanges]},
-        { path: 'admin', component: AdminComponent },
-        { path: 'movies/:id', component: MovieDetailComponent},
+        ,canDeactivate:[PreventUnsavedChanges], canActivate: [AuthGuard]},
+        { path: 'admin', component: AdminComponent ,canActivate: [AuthGuard]},
+        { path: 'movies/:id', component: MovieDetailComponent, canActivate: [AuthGuard]},
         { path: 'users/:id', component: UserDetailComponent
-        ,resolve: {user: UserDetailResolver}}
-    ]
-    },
-    { path: '**', redirectTo: '', pathMatch: 'full' }
+        ,resolve: {user: UserDetailResolver}, canActivate: [AuthGuard]},
+    // ]
+    // },
+    { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
