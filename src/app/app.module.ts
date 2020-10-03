@@ -31,6 +31,7 @@ import { UserListResolver } from './_resolvers/user-list.resolver';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -49,7 +50,7 @@ export function tokenGetter() {
       UserComponent,
       MovieDetailComponent,
       UserDetailComponent,
-      UserEditComponent
+      UserEditComponent,
    ],
   imports: [
     BrowserModule,
@@ -58,6 +59,7 @@ export function tokenGetter() {
     ReactiveFormsModule,
     CarouselModule,
     BrowserAnimationsModule,
+    Ng2SearchPipeModule,
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
       config:{

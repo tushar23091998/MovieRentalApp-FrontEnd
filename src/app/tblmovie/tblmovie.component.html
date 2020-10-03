@@ -1,6 +1,6 @@
-<div class="container" style="padding-top: 80px; padding-left: 25px;">
+<div class="container search-product" style="padding-top: 80px; padding-left: 25px;">
   <form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="text" box-sizing="border-box"
+    <input class="form-control mr-sm-2 " type="text" name="search" [(ngModel)]="search" autocomplete = "off" box-sizing="border-box"
      style="color: #919191 ; background-color: #333; border: 2px solid #333;" 
      placeholder="Search" 
      aria-label="Search">
@@ -11,7 +11,7 @@
 <div class="container" style="padding-top: 30px;" >
   <div class="row">
     <!-- <div class=" text-center"> -->
-      <div *ngFor="let tblmovie of tblmovies" class="col-lg-3 col-md-4 col-sm-6">
+      <div *ngFor="let tblmovie of tblmovies | filter:search" class="col-lg-3 col-md-4 col-sm-6">
         <div class=' bg-black dib br1 pa1   ma2 grow bw2 shadow-5 item' style="max-width:230px; max-height:380px ;overflow:hidden; border: blanchedalmond;">
           <a [routerLink]="['/movies',tblmovie.aMovieId]" ><img class="border border-white" width=230px height=300px alt='movieImage'   src = {{tblmovie.aImageLink}}/></a>
           <div  class="text-center">

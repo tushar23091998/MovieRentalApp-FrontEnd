@@ -9,6 +9,7 @@ import { AlertifyService } from '../_services/alertify.service';
 })
 export class TblmovieComponent implements OnInit {
   tblmovies: any;
+  search;
   constructor(private http: HttpClient,private alertify:AlertifyService) { }
 
   ngOnInit() {
