@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top " style="background-color: black">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top " style="background-color: black; padding-left: 20px;">
   <a class="navbar-brand" [routerLink]="['/home']">CHEAPFLIX</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
@@ -10,38 +10,35 @@
       <li *ngIf="!signedIn" class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/register']" >Register</a>
       </li> 
-      <li *ngIf="signedIn" class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" 
-        role="button" id="dropdownMenuLink" data-toggle="dropdown" 
-        aria-haspopup="true" aria-expanded="false">
-        Welcome {{authService.decodedToken.unique_name | titlecase}}</a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" [routerLink]="['/users',authService.decodedToken.nameid]"  >
-            <i class="fa fa-user"></i>
-            Orders
-          </a>
-          <a class="dropdown-item" [routerLink]="['/user/edit']"  >
-            <i class="fa fa-user"></i>
-            Edit Profile
-          </a>
-        </div>
-      </li>
+      
       <li *ngIf="signedIn" class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/admin']">Admin</a>
       </li>
       <li *ngIf="signedIn" class="nav-item">
         <a class="nav-link" href="#">Cart</a>
       </li>
-      <li *ngIf="signedIn" class="nav-item">
-        <a class="nav-link" href="#" (click)="logout()">Log Out</a>
-      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" box-sizing="border-box"
-       style="color: #919191 ; background-color: #333; border: 2px solid #333;" 
-       placeholder="Search" 
-       aria-label="Search">
-      <button class="btn btn-outline-danger my-2 my-sm-0" 
-      type="submit">Search</button>
+    <form class="form-inline my-2 my-lg-0" style="padding-right: 30px;">
+      <ul class="navbar-nav mr-auto">
+        <li *ngIf="signedIn" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" 
+          role="button" id="dropdownMenuLink" data-toggle="dropdown" 
+          aria-haspopup="true" aria-expanded="false">
+          Welcome {{authService.decodedToken.unique_name | titlecase}}</a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" [routerLink]="['/users',authService.decodedToken.nameid]"  >
+              <i class="fa fa-user"></i>
+              Orders
+            </a>
+            <a class="dropdown-item" [routerLink]="['/user/edit']"  >
+              <i class="fa fa-user"></i>
+              Edit Profile
+            </a>
+          </div>
+        </li>
+        <li *ngIf="signedIn" class="nav-item">
+          <a class="nav-link" href="#" (click)="logout()">Log Out</a>
+        </li>
+      </ul>
     </form>
 </nav>

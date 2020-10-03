@@ -13,12 +13,14 @@ import { InteractionService } from '../_services/interaction.service';
 })
 export class NavComponent implements OnInit {
   signedIn = false;
+  movies: any;
   jwtHelper = new JwtHelperService();
   constructor(private http:HttpClient, private authService: AuthService, private router: Router,
     private alertify: AlertifyService, private interactionService: InteractionService) 
     { }
 
   ngOnInit() {
+    this.getValues();
     const token = sessionStorage.getItem('token');
     if(token){
       this.authService.decodedToken = this.jwtHelper.decodeToken(token);
@@ -42,6 +44,14 @@ export class NavComponent implements OnInit {
     this.alertify.message('Logged out');
     this.signedIn=false;
     this.router.navigate(['/home']);
+  }
+
+  getValues(){
+    this.http.get('http://localhost:5000/api/movies').subscribe(response => {
+      this.movies = response;
+    }, error =>{
+      this.alertify.error(error);
+    });
   }
 
 }
