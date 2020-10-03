@@ -32,6 +32,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -56,10 +58,12 @@ export function tokenGetter() {
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    PaginationModule.forRoot(),
     ReactiveFormsModule,
     CarouselModule,
     BrowserAnimationsModule,
     Ng2SearchPipeModule,
+    ButtonsModule,
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
       config:{

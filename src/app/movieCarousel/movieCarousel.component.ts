@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { PaginatedResult } from '../_models/pagination';
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 
@@ -11,6 +12,7 @@ import { AuthService } from '../_services/auth.service';
 })
 export class MovieCarouselComponent implements OnInit {
   tblmovies:any;
+  
   constructor(private http:HttpClient, private alertify:AlertifyService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class MovieCarouselComponent implements OnInit {
   }
 
   getValues(){
-    this.http.get('http://localhost:5000/api/movies').subscribe(response => {
+    this.http.get('http://localhost:5000/api/tblmovies').subscribe(response => {
       this.tblmovies = response;
     }, error =>{
       this.alertify.error(error);
