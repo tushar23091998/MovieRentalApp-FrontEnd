@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Movie } from '../_models/movie';
+import { tblMovie } from '../_models/tblMovie';
 import { AlertifyService } from '../_services/alertify.service';
 import { MovieService } from '../_services/movie.service';
 import { DomSanitizer } from '@angular/platform-browser';

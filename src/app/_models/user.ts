@@ -1,4 +1,4 @@
-import { Order } from './order';
+import { tblOrder } from './tblOrder';
 
 export interface User {
     aCustomerId: number;
@@ -10,5 +10,5 @@ export interface User {
     aUsername: string;
     aMoviesRented?: number;
     aAdmin?: boolean;
-    orders?: Order[]; 
+    tblOrder?: tblOrder[]; 
 }

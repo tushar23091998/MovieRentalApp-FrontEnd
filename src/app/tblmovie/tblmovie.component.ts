@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Movie } from '../_models/movie';
+import { tblMovie } from '../_models/tblMovie';
 import { PaginatedResult, Pagination } from '../_models/pagination';
 import { AlertifyService } from '../_services/alertify.service';
 
@@ -12,17 +12,26 @@ import { AlertifyService } from '../_services/alertify.service';
 })
 export class TblmovieComponent implements OnInit {
   tblmovies: any;
-  pagination: Pagination;
+    pagination: Pagination;
    pageNumber=1;
    pageSize=100;
+   
+   
    movieParams: any={};
   
   search;
   constructor(private http: HttpClient,private alertify:AlertifyService) { }
 
   ngOnInit() {
-    this.getValues(this.pageNumber,this.pageSize);
+    this.getValues();
     this.movieParams.orderBy= 'rating';
+    this.pagination.currentPage = 0;
+  }
+
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
+    console.log(this.pagination.currentPage);
+    this.loadUsers();
   }
 
   getValues(page?,itemsPerPage?){
@@ -43,12 +52,17 @@ export class TblmovieComponent implements OnInit {
         }
         return paginatedResult;
       })
-    ).subscribe(response => {
+    ).subscribe((response : PaginatedResult<any>) => {
       this.tblmovies = response.result;
-      this.pagination = this.tblmovies.pagination;
+      this.pagination = response.pagination;
     }, error =>{
       this.alertify.error(error);
     });
   }
 
+  loadUsers(){
+    this.getValues(this.pagination.currentPage,this.pagination.itemsPerPage)
+  }
+
+  //(response : PaginatedResult<any>)
 }

@@ -1,0 +1,44 @@
+@media (min-width: 1200px) {
+    .container {
+      width: 1200px;
+    }
+}
+.login_container {
+    /* //display: table;
+    // position: absolute; */
+    height: 100%;
+    width: 100%;
+    background-color: rgba(1%, 1%, 1%, 0.7);    
+}
+
+.login_container:after {
+  background: url("https://mcdn.wallpapersafari.com/medium/55/43/5CunyZ.jpg");
+  opacity: 0.9;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
+  content: "";
+}
+.second_container {
+    /* //display: table;
+    // position: absolute; */
+    padding-top: 1200px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(1%, 1%, 1%, 0.7);    
+}
+
+.second_container:after {
+  background: url("https://mcdn.wallpapersafari.com/medium/55/43/5CunyZ.jpg");
+  opacity: 0.9;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
+  content: "";
+}

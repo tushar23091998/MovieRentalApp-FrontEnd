@@ -1,10 +1,72 @@
-<p style="padding-top: 60px; color: white;">
-  {{user.aname}}
-  {{user.aUsername}}
-  {{user.aEmail}}
-  {{user.aPhone}}
-  {{user.aAddress}}
-  {{user.age}}
-  {{user.aAdmin}}
-  {{user.aMoviesRented}}
-</p>
+<div class="container login_container" style="padding-top: 60px; color: white;">
+  <div>
+    <h1>{{user.aname | titlecase}}'s Order History</h1>
+    <h6>No. of movies currently rented: {{user.aMoviesRented}}</h6>
+  </div>
+  <div style="padding-top: 30px;">
+    <h4>Movies currently rented by you</h4>
+      <owl-carousel-o [options]="customOptions">
+      <ng-container  *ngFor="let index of user.tblOrder; index as i">
+        <ng-template width=200px height=500px carouselSlide [id]="" *ngIf="user.tblOrder[i].aRentalOrNot">
+            <div class=' carousel-item bg-black dib br1    ma2 grow bw2 shadow-5'
+              style="max-width:220px; max-height:500px ;overflow:hidden;">
+              <a [routerLink]="['/movies',user.tblOrder[i].aMovie.aMovieId]" ><img class="border border-white" width=230px height=300px alt='movieImage'   src = {{user.tblOrder[i].aMovie.aImageLink}}/></a>
+              <div  class="text-center">
+                <h6 max-width=200px max-height=320px style="color:white; overflow: hidden;">{{user.tblOrder[i].aMovie.aTitle}}</h6> 
+                <p  style="color:white;">{{user.tblOrder[i].aMovie.aPrice}}$
+                  {{user.tblOrder[i].aMovie.aRating}}⭐
+                </p >
+                <p style="color:white;">
+                  Ordered Date: {{user.tblOrder[i].aOrderedDate | date: 'dd/MM/yyyy'}}<br>
+                  Due Date: {{user.tblOrder[i].aDueDate | date: 'dd/MM/yyyy'}}
+                </p>
+              </div>
+          </div>
+      </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+  <div class="second_container" style="padding-top: 30px;">
+    <h4>Movies purchased by you</h4>
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let index of user.tblOrder; index as i">
+        <ng-template width=230px height=500px carouselSlide [id]="" *ngIf="!user.tblOrder[i].aRentalOrNot">
+            <div class='carousel-item bg-black dib br1 ma2 grow bw2 shadow-5' style="max-width:220px; max-height:500px ;overflow:hidden;">
+              <a [routerLink]="['/movies',user.tblOrder[i].aMovie.aMovieId]" ><img class="border border-white" width=230px height=300px alt='movieImage'   src = {{user.tblOrder[i].aMovie.aImageLink}}/></a>
+              <div  class="text-center">
+                <h6 max-width=200px max-height=320px style="color:white; overflow: hidden;">{{user.tblOrder[i].aMovie.aTitle}}</h6> 
+                <p  style="color:white;">{{user.tblOrder[i].aMovie.aPurchasePrice}}$
+                  {{user.tblOrder[i].aMovie.aRating}}⭐
+                </p >
+                <p style="color:white;">
+                  Ordered Date: {{user.tblOrder[i].aOrderedDate | date: 'dd/MM/yyyy'}}
+                </p>
+              </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+</div>
+
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let index of user.tblOrder; index as i" style="padding-top: 20px;">
+      <div *ngIf="user.tblOrder[i].aRentalOrNot" class=' bg-black dib br1 pa1   ma2 grow bw2 shadow-5 item' style="max-width:230px; max-height:500px ;overflow:hidden; border: blanchedalmond;">
+        <a [routerLink]="['/movies',user.tblOrder[i].aMovie.aMovieId]" ><img class="border border-white" width=230px height=300px alt='movieImage'   src = {{user.tblOrder[i].aMovie.aImageLink}}/></a>
+        <div  class="text-center">
+          <h6 max-width=200px max-height=320px style="color:white; overflow: hidden;">{{user.tblOrder[i].aMovie.aTitle}}</h6> 
+          <p  style="color:white;">{{user.tblOrder[i].aMovie.aPrice}}$
+            {{user.tblOrder[i].aMovie.aRating}}⭐
+          </p >
+          <p style="color:white;">
+            Ordered Date: {{user.tblOrder[i].aOrderedDate | date: 'dd/MM/yyyy'}}<br>
+            Due Date: {{user.tblOrder[i].aDueDate | date: 'dd/MM/yyyy'}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div> -->
+

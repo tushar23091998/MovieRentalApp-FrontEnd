@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Movie } from '../_models/movie';
+import { tblMovie } from '../_models/tblMovie';
 
 // const httpOptions = {
 //   headers: new HttpHeaders({
@@ -17,12 +17,12 @@ export class MovieService {
   baseUrl =  environment.apiUrl;
 constructor(private http: HttpClient) { }
 
-getMovies() : Observable<Movie[]>{
-  return this.http.get<Movie[]>(this.baseUrl+'movies');
+getMovies() : Observable<tblMovie[]>{
+  return this.http.get<tblMovie[]>(this.baseUrl+'movies');
 }
 
-getMovie(id): Observable<Movie>{
-  return this.http.get<Movie>(this.baseUrl + 'movies/' +id);
+getMovie(id): Observable<tblMovie>{
+  return this.http.get<tblMovie>(this.baseUrl + 'movies/' +id);
 }
 
 }

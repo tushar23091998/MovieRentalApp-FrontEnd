@@ -1,7 +1,7 @@
 import { Actor } from './actor';
 import { Director } from './director';
 
-export interface Movie {
+export interface tblMovie {
     aMovieId: number;
     aTitle: string;
     aMovieDescription: string;
