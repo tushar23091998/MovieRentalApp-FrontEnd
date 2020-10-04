@@ -1,5 +1,15 @@
-<div class="container" style="padding-top: 60px;">
-  <table class="table table-striped table-dark">
+<div class="container">
+  <div class="col" style="padding-top: 70px;">
+    <div class="btn-group float-right">
+      <button type="button" name="orderBy" class="btn btn-outline-danger" 
+      [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="acustomerid">Id</button>
+      <button type="button" name="orderBy" class="btn btn-outline-danger"
+       [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="username">Username</button>
+    </div>
+  </div>
+</div>
+<div class="container" style="padding-top: 50px;">
+  <table class="table table-striped table-dark"  >
     <thead>
       <tr>
         <th scope="col">#</th>
