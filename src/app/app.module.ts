@@ -34,13 +34,14 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { CartComponent } from './cart/cart.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
 @NgModule({
-  declarations: [											
+  declarations: [												
     AppComponent,
     TblmovieComponent,
       NavComponent,
@@ -53,6 +54,7 @@ export function tokenGetter() {
       MovieDetailComponent,
       UserDetailComponent,
       UserEditComponent,
+      CartComponent
    ],
   imports: [
     BrowserModule,

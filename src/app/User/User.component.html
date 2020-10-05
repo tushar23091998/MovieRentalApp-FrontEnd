@@ -1,5 +1,12 @@
-<div class="container">
-  <div class="col" style="padding-top: 70px;">
+<div class="container search-product" style="padding-top: 70px;">
+  <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2 " type="text" name="search" [(ngModel)]="search" autocomplete = "off" box-sizing="border-box"
+     style="color: #919191 ; background-color: #333; border: 2px solid #333;" 
+     placeholder="Search" 
+     aria-label="Search">
+    <button class="btn btn-outline-danger my-2 my-sm-0" 
+    type="submit">Search</button>
+  <div class="col" >
     <div class="btn-group float-right">
       <button type="button" name="orderBy" class="btn btn-outline-danger" 
       [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="acustomerid">Id</button>
@@ -7,8 +14,9 @@
        [(ngModel)]="userParams.orderBy" (click)="loadUsers()" btnRadio="username">Username</button>
     </div>
   </div>
+  </form>
 </div>
-<div class="container" style="padding-top: 50px;">
+<div class="container" style="padding-top: 30px;">
   <table class="table table-striped table-dark"  >
     <thead>
       <tr>
@@ -25,7 +33,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users">
+      <tr *ngFor="let user of users | filter:search">
         <th scope="row">{{user.aCustomerId}}</th>
         <td>{{user.aname}}</td>
         <td>{{user.aUsername}}</td>

@@ -13,6 +13,6 @@ export interface tblMovie {
     aTrailerLink: string;
     aGenre: string;
     aWideImage: string;
-    actorMapping: Actor[];
-    directorMapping: Director[];
+    tblMovieActorMapping: Actor[];
+    tblMovieDirectorMapping: Director[];
 }

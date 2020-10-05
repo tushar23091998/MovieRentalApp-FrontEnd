@@ -1,5 +1,5 @@
 import { DirectorName } from './directorName';
 
 export interface Director {
-    directors: DirectorName[];
+    ADirector: DirectorName[];
 }

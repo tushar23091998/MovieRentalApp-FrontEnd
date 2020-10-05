@@ -24,7 +24,7 @@ export class TblmovieComponent implements OnInit {
 
   ngOnInit() {
     this.getValues();
-    this.movieParams.orderBy= 'rating';
+    this.movieParams.orderBy= 'rentalprice';
     this.pagination.currentPage = 0;
   }
 

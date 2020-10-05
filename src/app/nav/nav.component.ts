@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 import { InteractionService } from '../_services/interaction.service';
+import { SharedcartService } from '../_services/sharedcart.service';
 
 @Component({
   selector: 'app-nav',
@@ -14,13 +15,15 @@ import { InteractionService } from '../_services/interaction.service';
 export class NavComponent implements OnInit {
   signedIn = false;
   movies: any;
+  cartItemCount:number = 0;
   jwtHelper = new JwtHelperService();
-  constructor(private http:HttpClient, private authService: AuthService, private router: Router,
-    private alertify: AlertifyService, private interactionService: InteractionService) 
+  constructor(private http:HttpClient, private authService: AuthService, private router: Router,private sharedService:SharedcartService
+    ,private alertify: AlertifyService, private interactionService: InteractionService) 
     { }
 
   ngOnInit() {
     this.getValues();
+    this.sharedService.currentMessage.subscribe(msg => this.cartItemCount = msg);
     const token = sessionStorage.getItem('token');
     if(token){
       this.authService.decodedToken = this.jwtHelper.decodeToken(token);
@@ -41,6 +44,7 @@ export class NavComponent implements OnInit {
 
   logout(){
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('movie');
     this.alertify.message('Logged out');
     this.signedIn=false;
     this.router.navigate(['/home']);

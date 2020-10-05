@@ -13,6 +13,7 @@ import { UserService } from '../_services/user.service';
 export class UserComponent implements OnInit {
   //users: any;
   users:User[];
+  search;
   userParams: any={};
 
   constructor(private http:HttpClient, private userService: UserService, 

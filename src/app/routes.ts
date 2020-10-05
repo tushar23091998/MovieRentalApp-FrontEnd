@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AdminComponent } from './Admin/Admin.component';
+import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
@@ -29,6 +30,7 @@ export const appRoutes: Routes = [
         ,resolve: {user: UserEditResolver}
         ,canDeactivate:[PreventUnsavedChanges], canActivate: [AuthGuard]},
         { path: 'admin', component: AdminComponent ,canActivate: [AuthGuard]},
+        { path: 'cart/:id', component: CartComponent ,canActivate: [AuthGuard],resolve: {user: UserDetailResolver}},
         { path: 'movies/:id', component: MovieDetailComponent, canActivate: [AuthGuard]},
         { path: 'users/:id', component: UserDetailComponent
         ,resolve: {user: UserDetailResolver}, canActivate: [AuthGuard]},
