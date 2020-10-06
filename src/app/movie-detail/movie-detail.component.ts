@@ -23,7 +23,7 @@ export class MovieDetailComponent implements OnInit {
   usermovies: any;
   cartItemCount: number = 0;
   @Output() cartEvent = new EventEmitter<number>();
-  movieAddedTocart:any;
+  moviesAddedTocart:any;
 
   constructor(private movieService: MovieService, private http: HttpClient, private sharedService: SharedcartService
   , private alertify: AlertifyService, private route: ActivatedRoute, 
@@ -58,7 +58,8 @@ export class MovieDetailComponent implements OnInit {
     onAddCart(movie: any)
     {
     console.log(movie.aMovieId);
-    this.movieAddedTocart = this.sharedService.getMovieFromCart();
+    this.moviesAddedTocart = this.sharedService.getMoviesFromCart();
+    console.log(this.moviesAddedTocart);
     for (let index = 0; index < this.user.tblOrder.length; index++) {
       let element = this.user.tblOrder[index].aMovie.aMovieId;
       if(element === movie.aMovieId)
@@ -69,23 +70,23 @@ export class MovieDetailComponent implements OnInit {
       }
     }
     console.log(this.flag);
-    if(this.movieAddedTocart == null && this.flag == false)
+    if(this.moviesAddedTocart == null && this.flag == false)
     {
-      this.movieAddedTocart = [];
-      this.movieAddedTocart.push(movie);
-      this.sharedService.addMovieToCart(this.movieAddedTocart);
+      //this.movieAddedTocart = [];
+      //this.movieAddedTocart.push(movie);
+      this.sharedService.addMovieToCart(movie);
       this.alertify.success("Movie added to cart successfully");
     }
     else if(this.flag == true){
-      this.alertify.warning("Movie already rented by you");
+      this.alertify.warning("Movie already rented/purchased by you");
     }
     else
     {
-      let tempProduct = this.movieAddedTocart.find(p => p.aMovieId === movie.aMovieId);
+      let tempProduct = this.moviesAddedTocart.find(p => p.aMovieId === movie.aMovieId);
       if(tempProduct == null)
       {
-        this.movieAddedTocart.push(movie);
-        this.sharedService.addMovieToCart(this.movieAddedTocart);
+        this.moviesAddedTocart.push(movie);
+        this.sharedService.addMovieToCart(movie);
         this.alertify.success("Movie added to cart successfully");
       }
       else
@@ -93,7 +94,7 @@ export class MovieDetailComponent implements OnInit {
         this.alertify.warning("Movie already in cart");
       } 
     }
-    this.cartItemCount = this.movieAddedTocart.length;
+    this.cartItemCount = this.moviesAddedTocart.length;
     this.sharedService.updateCartCount(this.cartItemCount);
   }
 }

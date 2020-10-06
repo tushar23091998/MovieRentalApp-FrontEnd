@@ -1,4 +1,4 @@
-export interface ActorName {
+export interface tblActor {
     aActorId: number;
     aActorName: string;
 }

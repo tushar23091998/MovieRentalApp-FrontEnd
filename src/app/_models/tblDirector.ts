@@ -1,4 +1,4 @@
-export interface DirectorName {
+export interface tblDirector {
     aDirectorId: number;
     aDirectorName: string;
 }

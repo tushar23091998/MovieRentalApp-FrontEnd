@@ -4,11 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-  })
-};
+
 
 
 @Injectable({
@@ -17,6 +13,11 @@ const httpOptions = {
 export class UserService {
 baseUrl =  environment.apiUrl;
 constructor(private http: HttpClient) { }
+ httpOptions = {
+  headers: new HttpHeaders({
+    'Authorization': 'Bearer '+ sessionStorage.getItem('token')
+  })
+};
 
 getUsers(userParams?) : Observable<User[]>{
   let params = new HttpParams();
@@ -31,7 +32,7 @@ getUser(id): Observable<User>{
 }
 
 updateUser(id: number, user: User){
-  return this.http.put(this.baseUrl + 'users/' + id, user, httpOptions);
+  return this.http.put(this.baseUrl + 'users/' + id, user, this.httpOptions);
 }
 
 }

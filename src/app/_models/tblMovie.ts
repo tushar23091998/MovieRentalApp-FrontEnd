@@ -1,5 +1,5 @@
-import { Actor } from './actor';
-import { Director } from './director';
+import { tblMovieActorMapping } from './tblMovieActorMapping';
+import { tblMovieDirectorMapping } from './tblMovieDirectorMapping';
 
 export interface tblMovie {
     aMovieId: number;
@@ -13,6 +13,6 @@ export interface tblMovie {
     aTrailerLink: string;
     aGenre: string;
     aWideImage: string;
-    tblMovieActorMapping: Actor[];
-    tblMovieDirectorMapping: Director[];
+    tblMovieActorMapping: tblMovieActorMapping[];
+    tblMovieDirectorMapping: tblMovieDirectorMapping[];
 }

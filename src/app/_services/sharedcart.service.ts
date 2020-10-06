@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { tblMovie } from '../_models/tblMovie';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,46 @@ export class SharedcartService {
    }
 
   addMovieToCart(movie: any) {
-    sessionStorage.setItem('movie', JSON.stringify(movie));
+    let movies = [];
+    if(sessionStorage.getItem('movies')){
+      movies= JSON.parse(sessionStorage.getItem('movies'));
+      console.log(movies);
+      movies=[...movies,movie]
+      console.log(movies);
+    }
+    else{
+      movies=[movie];
+      console.log(movies);
+    }
+    sessionStorage.setItem('movies', JSON.stringify(movies));
   }
-  getMovieFromCart() {
-    return JSON.parse(sessionStorage.getItem('movie'));
+
+  // addMovieToCart(movies: any) {
+  //   sessionStorage.setItem('movies', JSON.stringify(movies));
+  // }
+  getMoviesFromCart() {
+    return JSON.parse(sessionStorage.getItem('movies'));
   }
   removeAllMovieFromCart() {
-    return sessionStorage.removeItem('movie');
+    return sessionStorage.removeItem('movies');
+  }
+
+  removeMovieFromCart(movieId: number){
+    let moviesInCart = JSON.parse(sessionStorage.getItem('movies'));
+    sessionStorage.removeItem('movies');
+    //console.log(moviesInCart);
+    for (let index = 0; index < moviesInCart.length; index++) {
+      const element = moviesInCart[index];
+      if(moviesInCart[index].aMovieId == movieId) {
+        moviesInCart.splice(index, 1);
+        break;
+      }
+    }
+    for (let index = 0; index < moviesInCart.length; index++) {
+      const element = moviesInCart[index];
+      this.addMovieToCart(element);
+    }
+    //console.log(moviesInCart);
   }
 
   updateCartCount(count: number) {

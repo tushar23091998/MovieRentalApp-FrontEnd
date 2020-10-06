@@ -15,7 +15,7 @@ import { SharedcartService } from '../_services/sharedcart.service';
 export class NavComponent implements OnInit {
   signedIn = false;
   movies: any;
-  cartItemCount:number = 0;
+  cartItemCount:number;
   jwtHelper = new JwtHelperService();
   constructor(private http:HttpClient, private authService: AuthService, private router: Router,private sharedService:SharedcartService
     ,private alertify: AlertifyService, private interactionService: InteractionService) 
@@ -44,7 +44,7 @@ export class NavComponent implements OnInit {
 
   logout(){
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem('movie');
+    sessionStorage.removeItem('movies');
     this.alertify.message('Logged out');
     this.signedIn=false;
     this.router.navigate(['/home']);

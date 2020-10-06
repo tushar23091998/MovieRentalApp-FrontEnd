@@ -5,6 +5,7 @@ import { User } from '../_models/user';
 import { AlertifyService } from '../_services/alertify.service';
 import { UserService } from '../_services/user.service';
 import { SharedcartService } from '../_services/sharedcart.service';
+import { tblMovie } from '../_models/tblMovie';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,7 @@ import { SharedcartService } from '../_services/sharedcart.service';
 export class CartComponent implements OnInit {
   user: User;
   defaultQuantity: number = 1;
-  movieAddedTocart: any;
+  moviesAddedTocart: any =[];
   allTotal: number;
   constructor(private http:HttpClient, private userService: UserService,private sharedService: SharedcartService,
     private alertify: AlertifyService,private route: ActivatedRoute ) { }
@@ -23,22 +24,20 @@ export class CartComponent implements OnInit {
     this.route.data.subscribe(data=>{
       this.user=data['user'];
     });
-    this.movieAddedTocart=this.sharedService.getMovieFromCart();
-    for (let i in this.movieAddedTocart) {
-      this.movieAddedTocart[i].Quantity = 1;
-    }
-    this.sharedService.removeAllMovieFromCart();
-    this.sharedService.addMovieToCart(this.movieAddedTocart);
-    this.calculteAllTotal(this.movieAddedTocart);
+    this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
+    // this.sharedService.removeAllMovieFromCart();
+    // for (let index = 0; index < this.moviesAddedTocart.length; index++) {
+    //   const element = this.moviesAddedTocart[index];
+    //   this.sharedService.addMovieToCart(element);
+    // }
+
+    this.calculteAllTotal(this.moviesAddedTocart);
   }
 
-  onRemoveQuantity(movie: any)
+  onRemoveQuantity(movieId : number)
   {
-    this.movieAddedTocart=this.sharedService.getMovieFromCart();
-    this.movieAddedTocart.find(p=>p.aMovieId == movie.aMovieId).Quantity = movie.Quantity-1;
-    this.sharedService.removeAllMovieFromCart();
-    this.sharedService.addMovieToCart(this.movieAddedTocart);
-    this.calculteAllTotal(this.movieAddedTocart);
+    this.sharedService.removeMovieFromCart(movieId);
+    this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
   }
 
   calculteAllTotal(allItems:any)
