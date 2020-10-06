@@ -42,13 +42,14 @@ export class CartComponent implements OnInit {
 
   onRemoveQuantity(movie : any)
   {
-    this.sharedService.removeMovieFromCart(movie.aMovieId);
-    this.calculateTotal();
     this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
-    if(this.moviesAddedTocart == null){
-      this.sharedService.updateCartCount(0);
+    if(this.moviesAddedTocart.length === 1 || this.moviesAddedTocart.length === 0){
+      this.clearCart();
     }
     else{
+      this.sharedService.removeMovieFromCart(movie.aMovieId);
+      this.calculateTotal();
+      this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
       this.cartItemCount = this.moviesAddedTocart.length;
       console.log(this.cartItemCount);
       this.sharedService.updateCartCount(this.cartItemCount);
@@ -70,6 +71,7 @@ export class CartComponent implements OnInit {
     if(this.moviesAddedTocart == null){
       this.sharedService.updateCartCount(0);
     }
+    this.calculateTotal();
   }
 
   Rent(movieId: number, price: number){

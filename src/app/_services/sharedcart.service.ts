@@ -43,7 +43,7 @@ export class SharedcartService {
     sessionStorage.removeItem('movies');
     //console.log(moviesInCart);
     for (let index = 0; index < moviesInCart.length; index++) {
-      const element = moviesInCart[index];
+      //const element = moviesInCart[index];
       if(moviesInCart[index].aMovieId == movieId) {
         moviesInCart.splice(index, 1);
         break;
