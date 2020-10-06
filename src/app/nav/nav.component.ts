@@ -15,6 +15,7 @@ import { SharedcartService } from '../_services/sharedcart.service';
 export class NavComponent implements OnInit {
   signedIn = false;
   movies: any;
+  moviesAddedTocart:any;
   cartItemCount:number;
   jwtHelper = new JwtHelperService();
   constructor(private http:HttpClient, private authService: AuthService, private router: Router,private sharedService:SharedcartService
@@ -24,6 +25,9 @@ export class NavComponent implements OnInit {
   ngOnInit() {
     this.getValues();
     this.sharedService.currentMessage.subscribe(msg => this.cartItemCount = msg);
+    // this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
+    // this.cartItemCount = this.sharedService.getMoviesFromCart().length;
+    // this.sharedService.updateCartCount(this.cartItemCount);
     const token = sessionStorage.getItem('token');
     if(token){
       this.authService.decodedToken = this.jwtHelper.decodeToken(token);

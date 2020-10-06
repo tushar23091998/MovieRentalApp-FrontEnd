@@ -3,19 +3,19 @@
         <div class="col-sm-4">
             <h1>{{user.aname | titlecase}}'s Profile</h1>
             <div class="card" style="background-color: black; color:white">
-            <img class="card-img-top img-thumbnail" alt={{user.aname}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_3FlCnFuOd9nXxC6_oWIjF1-PqTiILFS9Ig&usqp=CAU" />
-            <div class="card-body">
-              <div>
-                <strong>Username:</strong>
-                <p> {{user.aUsername}}</p>
-              </div>
-              <div>
-                <strong>Email:</strong>
-                <p> {{user.aEmail}}</p>
-            </div>
+                <img class="card-img-top img-thumbnail" alt={{user.aname}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS_3FlCnFuOd9nXxC6_oWIjF1-PqTiILFS9Ig&usqp=CAU" />
+                <div class="card-body">
+                    <div>
+                        <strong>Username:</strong>
+                        <p> {{user.aUsername}}</p>
+                    </div>
+                    <div>
+                        <strong>Email:</strong>
+                        <p> {{user.aEmail}}</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
         <div class="col-sm-8" style="padding-top: 40px; background-color: black; color:white;">
             <div *ngIf="editForm.dirty" class="alert alert-info">
                 <strong>Information:</strong>You have made some changes, Any unsaved changes will be lost!

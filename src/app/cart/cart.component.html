@@ -1,41 +1,48 @@
 <div class="container login_container" style="padding-top: 60px; color: white;">
   <div>
     <h1>{{user.aname | titlecase}}'s Cart</h1>
-    <span style="color: white">Total value is: {{allTotal}}</span>
+    <span  style="color: white">Total value is: {{allTotal}}  &nbsp; <button type="button" (click)="clearCart()" class="btn btn-outline-danger"  >Clear All</button></span>
   </div>
-  
   <div  class="container">
-    <table class="table  table-responsive table-hover" style="padding-top: 20px; color: white;">
-      <tr>
-          <th colspan="4">
-              Movie
-          </th>                    
-          <th class="text-center" colspan="4">
-              Duration
-          </th>
-          <th colspan="4" style="padding-left: 30px;">
-              Price
-          </th>
-          <th colspan="4" style="padding-left: 30px;">
-            Type
-          </th>
-          <th colspan="4" style="padding-left: 30px;">
-            <!-- <button type="button" class="btn btn-secondary btn-sm">Remove</button> -->
-          </th>
-      </tr>
-      <tr *ngFor="let movie of moviesAddedTocart;let q = index">
-        <td colspan="4"><img src="{{movie.aImageLink}}" width="100px;" height="130px;"/></td>
-        <td class="text-center" colspan="4">{{movie.aDuration}}</td>
-        <td colspan="4" style="padding-left: 30px;">
-          RPrice: {{movie.aPrice}}
-        </td>
-        <td colspan="4" style="padding-left: 30px;">
-          Rental
-        </td>
-        <td colspan="4" style="padding-left: 30px;">
-          <button type="button" (click)="onRemoveQuantity(movie.aMovieId)" class="btn btn-outline-danger">-</button>
-        </td>
-      </tr>
-      </table>
+    <div class="row">
+      <div class="col-sm-6">
+        <table  width="100%" class="table  table-responsive table-hover" style="padding-top: 20px; color: white;">
+          <tr>
+              <th colspan="4">
+                  Movie
+              </th>                    
+              <th class="text-center" colspan="4">
+                  Duration
+              </th>
+              <th colspan="4" style="padding-left: 30px;">
+                  Price
+              </th>
+              <th colspan="4" style="padding-left: 30px;">
+                Type
+              </th>
+              <th colspan="4" style="padding-left: 30px;">
+                <!-- <button type="button" class="btn btn-secondary btn-sm">Remove</button> -->
+              </th>
+          </tr>
+          <tr *ngFor="let movie of moviesAddedTocart;let q = index">
+            <td colspan="4"><img src="{{movie.aImageLink}}" width="100px;" height="130px;"/></td>
+            <td class="text-center" colspan="4">{{movie.aDuration}}</td>
+            <td colspan="4" style="padding-left: 30px;">
+              RPrice: {{movie.aPrice}}
+            </td>
+            <td colspan="4" style="padding-left: 30px;">
+              Rental
+            </td>
+            <td colspan="4" style="padding-left: 30px;">
+              <button type="button" (click)="onRemoveQuantity(movie.aMovieId)" class="btn btn-outline-danger">-</button>
+            </td>
+          </tr>
+          
+          <div style="padding-left: 60px;">
+            
+          </div>
+          </table>
+      </div>
+    </div>  
   </div>
 </div>

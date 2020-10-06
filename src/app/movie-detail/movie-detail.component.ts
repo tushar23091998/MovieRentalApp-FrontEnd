@@ -21,8 +21,7 @@ export class MovieDetailComponent implements OnInit {
   flag: boolean = false;
   user: any;
   usermovies: any;
-  cartItemCount: number = 0;
-  @Output() cartEvent = new EventEmitter<number>();
+  cartItemCount: number;
   moviesAddedTocart:any;
 
   constructor(private movieService: MovieService, private http: HttpClient, private sharedService: SharedcartService
@@ -32,10 +31,6 @@ export class MovieDetailComponent implements OnInit {
   ngOnInit() {
     this.loadMovie();
     this.loadUserMovies();
-    // this.route.data.subscribe(data=>{
-    //   this.user=data['user'];
-    //   // this.usermovies=this.user.tblOrder;
-    // });
   }
 
   loadMovie(){
@@ -94,7 +89,7 @@ export class MovieDetailComponent implements OnInit {
         this.alertify.warning("Movie already in cart");
       } 
     }
-    this.cartItemCount = this.moviesAddedTocart.length;
+    this.cartItemCount = this.sharedService.getMoviesFromCart().length;
     this.sharedService.updateCartCount(this.cartItemCount);
   }
 }

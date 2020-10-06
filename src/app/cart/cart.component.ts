@@ -14,8 +14,9 @@ import { tblMovie } from '../_models/tblMovie';
 })
 export class CartComponent implements OnInit {
   user: User;
-  defaultQuantity: number = 1;
+  //defaultQuantity: number = 1;
   moviesAddedTocart: any =[];
+  cartItemCount: number;
   allTotal: number;
   constructor(private http:HttpClient, private userService: UserService,private sharedService: SharedcartService,
     private alertify: AlertifyService,private route: ActivatedRoute ) { }
@@ -25,19 +26,28 @@ export class CartComponent implements OnInit {
       this.user=data['user'];
     });
     this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
-    // this.sharedService.removeAllMovieFromCart();
+    this.cartItemCount = this.sharedService.getMoviesFromCart().length;
+    this.sharedService.updateCartCount(this.cartItemCount);
+    this.calculteAllTotal(this.moviesAddedTocart);
+        // this.sharedService.removeAllMovieFromCart();
     // for (let index = 0; index < this.moviesAddedTocart.length; index++) {
     //   const element = this.moviesAddedTocart[index];
     //   this.sharedService.addMovieToCart(element);
     // }
-
-    this.calculteAllTotal(this.moviesAddedTocart);
   }
 
   onRemoveQuantity(movieId : number)
   {
     this.sharedService.removeMovieFromCart(movieId);
     this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
+    if(this.moviesAddedTocart == null){
+      this.sharedService.updateCartCount(0);
+    }
+    else{
+      this.cartItemCount = this.moviesAddedTocart.length;
+      console.log(this.cartItemCount);
+      this.sharedService.updateCartCount(this.cartItemCount);
+    }
   }
 
   calculteAllTotal(allItems:any)
@@ -49,6 +59,12 @@ export class CartComponent implements OnInit {
    this.allTotal=total;
   }
 
-  
+  clearCart(){
+    this.sharedService.removeAllMovieFromCart();
+    this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
+    if(this.moviesAddedTocart == null){
+      this.sharedService.updateCartCount(0);
+    }
+  }
 
 }
