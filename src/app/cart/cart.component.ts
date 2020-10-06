@@ -15,6 +15,7 @@ import { tblMovie } from '../_models/tblMovie';
 })
 export class CartComponent implements OnInit {
   user: User;
+  totalPrice: number=0;
   typeArray: Map<number, string> = new Map<number, string>();
   //defaultQuantity: number = 1;
   moviesAddedTocart: any =[];
@@ -28,6 +29,7 @@ export class CartComponent implements OnInit {
       this.user=data['user'];
     });
     this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
+    this.calculateTotal();
     this.cartItemCount = this.sharedService.getMoviesFromCart().length;
     this.sharedService.updateCartCount(this.cartItemCount);
     // this.calculteAllTotal(this.moviesAddedTocart);
@@ -38,9 +40,10 @@ export class CartComponent implements OnInit {
     // }
   }
 
-  onRemoveQuantity(movieId : number)
+  onRemoveQuantity(movie : any)
   {
-    this.sharedService.removeMovieFromCart(movieId);
+    this.sharedService.removeMovieFromCart(movie.aMovieId);
+    this.calculateTotal();
     this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
     if(this.moviesAddedTocart == null){
       this.sharedService.updateCartCount(0);
@@ -69,13 +72,34 @@ export class CartComponent implements OnInit {
     }
   }
 
-  Rent(movieId: number){
+  Rent(movieId: number, price: number){
     this.typeArray.set(movieId,"Rental");
+    this.calculateTotal();
     console.log(this.typeArray.get(movieId));
   }
-  Purchase(movieId: number){
+  Purchase(movieId: number, price: number){
     this.typeArray.set(movieId,"Purchased");
+    this.calculateTotal();
     console.log(this.typeArray.get(movieId));
+  }
+  addPrice(price : number){
+    this.totalPrice +=  price;
+    console.log(this.totalPrice);
+  }
+  calculateTotal()
+  {
+    this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
+    this.totalPrice = 0;
+    for (let index = 0; index < this.moviesAddedTocart.length; index++) {
+      const element = this.moviesAddedTocart[index];
+      if(this.typeArray.get(element.aMovieId) === "Rental"){
+        this.totalPrice += Number(element.aPrice);
+      }
+      else if(this.typeArray.get(element.aMovieId) === "Purchased")
+      {
+        this.totalPrice += Number(element.aPurchasePrice);
+      }
+    }
   }
 
 }

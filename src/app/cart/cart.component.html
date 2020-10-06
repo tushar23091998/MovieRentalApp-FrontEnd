@@ -1,7 +1,7 @@
 <div class="container login_container" style="padding-top: 60px; color: white;">
   <div>
     <h1>{{user.aname | titlecase}}'s Cart</h1>
-    <span  style="color: white">Total value is:   &nbsp; <button type="button" (click)="clearCart()" class="btn btn-outline-danger"  >Clear All</button></span>
+    <span  style="color: white">Total value is: {{totalPrice}}  &nbsp; <button type="button" (click)="clearCart()" class="btn btn-outline-danger"  >Clear All</button></span>
   </div>
   <div  class="container">
     <div class="row">
@@ -29,15 +29,15 @@
             <td class="text-center" colspan="4">{{movie.aDuration}}</td>
             <td colspan="4" style="padding-left: 30px;">
               RPrice: {{movie.aPrice}} <br>
-               <button type="button" (click)="Rent(movie.aMovieId)" class="btn btn-outline-danger">Rent</button><br>
+               <button type="button" (click)="Rent(movie.aMovieId,movie.aPrice)" class="btn btn-outline-danger">Rent</button><br>
               PPrice: {{movie.aPurchasePrice}} <br>
-              <button type="button" (click)="Purchase(movie.aMovieId)" class="btn btn-outline-danger">Purchase</button>
+              <button type="button" (click)="Purchase(movie.aMovieId,movie.aPurchasePrice)" class="btn btn-outline-danger">Purchase</button>
             </td>
             <td colspan="4" style="padding-left: 30px;">
               <div>{{typeArray.get(movie.aMovieId)}}</div>
             </td>
             <td colspan="4" style="padding-left: 30px;">
-              <button type="button" (click)="onRemoveQuantity(movie.aMovieId)" class="btn btn-outline-danger">-</button>
+              <button type="button" (click)="onRemoveQuantity(movie)" class="btn btn-outline-danger">-</button>
             </td>
           </tr>
           
