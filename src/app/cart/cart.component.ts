@@ -7,6 +7,7 @@ import { UserService } from '../_services/user.service';
 import { SharedcartService } from '../_services/sharedcart.service';
 import { tblMovie } from '../_models/tblMovie';
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,10 +15,11 @@ import { tblMovie } from '../_models/tblMovie';
 })
 export class CartComponent implements OnInit {
   user: User;
+  typeArray: Map<number, string> = new Map<number, string>();
   //defaultQuantity: number = 1;
   moviesAddedTocart: any =[];
   cartItemCount: number;
-  allTotal: number;
+  //allTotal: number;
   constructor(private http:HttpClient, private userService: UserService,private sharedService: SharedcartService,
     private alertify: AlertifyService,private route: ActivatedRoute ) { }
 
@@ -28,7 +30,7 @@ export class CartComponent implements OnInit {
     this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
     this.cartItemCount = this.sharedService.getMoviesFromCart().length;
     this.sharedService.updateCartCount(this.cartItemCount);
-    this.calculteAllTotal(this.moviesAddedTocart);
+    // this.calculteAllTotal(this.moviesAddedTocart);
         // this.sharedService.removeAllMovieFromCart();
     // for (let index = 0; index < this.moviesAddedTocart.length; index++) {
     //   const element = this.moviesAddedTocart[index];
@@ -50,14 +52,14 @@ export class CartComponent implements OnInit {
     }
   }
 
-  calculteAllTotal(allItems:any)
-  {
-    let total = 0;
-    for (let i in allItems) {
-      total= total+(allItems[i].Quantity *allItems[i].aPrice);
-   }
-   this.allTotal=total;
-  }
+  // calculteAllTotal(allItems:any)
+  // {
+  //   let total = 0;
+  //   for (let i in allItems) {
+  //     total= total+(allItems[i].Quantity *allItems[i].aPrice);
+  //  }
+  //  this.allTotal=total;
+  // }
 
   clearCart(){
     this.sharedService.removeAllMovieFromCart();
@@ -65,6 +67,15 @@ export class CartComponent implements OnInit {
     if(this.moviesAddedTocart == null){
       this.sharedService.updateCartCount(0);
     }
+  }
+
+  Rent(movieId: number){
+    this.typeArray.set(movieId,"Rental");
+    console.log(this.typeArray.get(movieId));
+  }
+  Purchase(movieId: number){
+    this.typeArray.set(movieId,"Purchased");
+    console.log(this.typeArray.get(movieId));
   }
 
 }
