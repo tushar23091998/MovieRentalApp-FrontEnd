@@ -74,6 +74,55 @@ export class CartComponent implements OnInit {
 
   checkOut(){
 
+    this.moviesAddedTocart = this.sharedService.getMoviesFromCart();
+    if(this.moviesAddedTocart === null){
+      this.cartItemCount = 0;
+    }
+    else{
+      this.cartItemCount = this.moviesAddedTocart.length;
+    }
+    for (let index = 0; index < this.cartItemCount; index++) {
+      let movie = this.moviesAddedTocart[index];
+      if(this.typeArray.get(movie.aMovieId) === "Rental"){
+        let date= new Date();
+        let date1 = new Date();
+        this.http.post('http://localhost:5000/api/orders',{
+          aCustomerId : this.user.aCustomerId,
+          aMovieId : movie.aMovieId,
+          aRentalOrNot : true,
+          aOrderedDate : date,
+          aDueDate : new Date(date1.setDate(date1.getDate() + 7))
+        }).subscribe(()=>{
+          this.alertify.success('Order placed successfully');
+          this.clearCart();
+        }, error => {
+          console.log(error);
+          this.alertify.error(error);
+      });
+      }
+      else if(this.typeArray.get(movie.aMovieId) === "Purchased")
+      {
+        let date= new Date();
+        let date1 = new Date();
+        this.http.post('http://localhost:5000/api/orders',{
+          aCustomerId : this.user.aCustomerId,
+          aMovieId : movie.aMovieId,
+          aRentalOrNot : false,
+          aOrderedDate : date,
+        }).subscribe(() => {
+          this.alertify.success('Order placed successfully');
+          this.clearCart();
+        }, error => {
+          console.log(error);
+          this.alertify.error(error);
+      });
+      }
+      else if(this.typeArray.get(movie.aMovieId) === null)
+      {
+        this.alertify.warning("Please choose rental or purchase");
+      }
+    }
+
   }
   
   clearCart(){
