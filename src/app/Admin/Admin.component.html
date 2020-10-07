@@ -1,12 +1,77 @@
 <div class="container" style="padding-top: 80px;">
   <form class="form-inline my-2 my-lg-0">
     <button class="nav-link btn btn-outline-danger" [routerLink]="['/users']">Users</button>
-    <button class="nav-link btn btn-outline-danger">Add Movie</button>
-    <button class="nav-link btn btn-outline-danger">Delete Movie</button>
+    <button (click)="addToggle()" class="nav-link btn btn-outline-danger">Add Movie</button>
+    <button (click)="deleteToggle()" class="nav-link btn btn-outline-danger">Delete Movie</button>
   </form>
-
-  <div>
-    
+  <div *ngIf="this.addMode" style="padding-top: 50px;">
+    <div class="login_div" style="padding-bottom: 30px;">
+      <form #movieForm="ngForm" class="form text-center" style="margin-top:-20px;" id="form1" (ngSubmit)="addMovie(model)">
+        <p class="form-group">
+          <label >Movie Title </label>
+          <br />
+          <input class="form-control" name="aTitle" type="text"  placeholder="Movie Title" required
+            [(ngModel)]="model.aTitle" />
+        </p>
+        <p class="form-group">
+          <label>Description</label>
+          <br />
+          <input class="form-control" name="aMovieDescription" type="text" placeholder="Description" required
+            [(ngModel)]="model.aMovieDescription" />
+        </p>
+        <p class="form-group">
+          <label>Duration</label>
+          <br />
+          <input class="form-control" name="aDuration" type="text" placeholder="Duration" required
+            [(ngModel)]="model.aDuration" />
+        </p>
+        <p class="form-group">
+          <label>Rental Price</label>
+          <br />
+          <input class="form-control" name="aPrice" type="text" placeholder="Rental Price" required
+            [(ngModel)]="model.aPrice" />
+        </p>
+        <p class="form-group">
+          <label>Purchase Price</label>
+          <br />
+          <input class="form-control" name="aPurchasePrice" type="text" placeholder="Purchase Price" required
+            [(ngModel)]="model.aPurchasePrice" />
+        </p>
+        <p class="form-group">
+          <label>Rating</label>
+          <br />
+          <input class="form-control" name="aRating" type="text" placeholder="Rating" required
+            [(ngModel)]="model.aRating" />
+        </p>
+        <p class="form-group">
+          <label>Image Link</label>
+          <br />
+          <input class="form-control" name="aImageLink" type="text" placeholder="Image Link" required
+            [(ngModel)]="model.aImageLink" />
+        </p>
+        <p class="form-group">
+          <label>Trailer Link</label>
+          <br />
+          <input class="form-control" name="aTrailerLink" type="text" placeholder="Trailer Link" required
+            [(ngModel)]="model.aTrailerLink" />
+        </p>
+        <p class="form-group">
+          <label>Genre</label>
+          <br />
+          <input class="form-control" name="aGenre" type="text" placeholder="Genre" required
+            [(ngModel)]="model.aGenre" />
+        </p>
+        <p class="form-group">
+          <label>Wide Image</label>
+          <br />
+          <input class="form-control" name="aWideImage" type="text" placeholder="Wide Image" required
+            [(ngModel)]="model.aWideImage" />
+        </p>
+        <button (click)="movieForm.resetForm()" [disabled]="!movieForm.valid" class=" btn btn-outline-danger" type="submit">
+          Add Movie</button>
+          <br>
+      </form>
+    </div>  
   </div>
 </div>
 

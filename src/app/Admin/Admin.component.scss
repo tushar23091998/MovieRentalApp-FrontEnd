@@ -1,0 +1,24 @@
+input[type=text], input[type=password], input[type=email], input[type=tel] { 
+    padding: 5px;
+    border: solid 1.0px #dab3b3; 
+    outline: 0; 
+    font: normal 12px/100% 'Roboto', sans-serif; 
+    font-weight: 100;
+    width: 600px; 
+    background: #dab3b3; 
+} 
+
+.form label,p { 
+    color: White; 
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+} 
+.login_div {
+    width: 55%;
+    margin-left:auto;
+    margin-right:auto;
+    /*padding-top: -20px;*/
+    /*padding-bottom: 30px;*/
+    
+    /*background-color: #283442;*/
+}
