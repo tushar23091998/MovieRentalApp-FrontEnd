@@ -27,7 +27,7 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data=>{
       this.user = data['user'];
-    })
+    });
   }
   // updateUser(){
   //   console.log(this.user);
@@ -43,4 +43,9 @@ export class UserEditComponent implements OnInit {
       this.alertify.error(error);
     });
   }
+
+  // isAdmin()
+  // {
+  //   if(user)
+  // }
 }

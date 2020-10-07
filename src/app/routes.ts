@@ -19,7 +19,7 @@ export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'movies', component: TblmovieComponent },
+    { path: 'movies', component: TblmovieComponent},
     // { path: '' ,
     // runGuardsAndResolvers:'always',
     // canActivate: [AuthGuard],

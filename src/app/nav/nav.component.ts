@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../_models/user';
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 import { InteractionService } from '../_services/interaction.service';
@@ -19,11 +20,12 @@ export class NavComponent implements OnInit {
   cartItemCount:number;
   jwtHelper = new JwtHelperService();
   constructor(private http:HttpClient, private authService: AuthService, private router: Router,private sharedService:SharedcartService
-    ,private alertify: AlertifyService, private interactionService: InteractionService) 
+    ,private alertify: AlertifyService, private interactionService: InteractionService, private route: ActivatedRoute) 
     { }
 
   ngOnInit() {
-    this.getValues();
+    //this.getValues();
+
     this.sharedService.currentMessage.subscribe(msg => this.cartItemCount = msg);
     // this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
     // this.cartItemCount = this.sharedService.getMoviesFromCart().length;
@@ -43,8 +45,10 @@ export class NavComponent implements OnInit {
         this.signedIn = false;
        }
     }}
-    );
+    );    
   }
+
+
 
   logout(){
     sessionStorage.removeItem('token');
@@ -54,12 +58,6 @@ export class NavComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  getValues(){
-    this.http.get('http://localhost:5000/api/movies').subscribe(response => {
-      this.movies = response;
-    }, error =>{
-      this.alertify.error(error);
-    });
-  }
+
 
 }

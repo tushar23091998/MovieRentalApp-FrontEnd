@@ -4,6 +4,10 @@ import { map } from 'rxjs/operators';
 import { tblMovie } from '../_models/tblMovie';
 import { PaginatedResult, Pagination } from '../_models/pagination';
 import { AlertifyService } from '../_services/alertify.service';
+import { User } from '../_models/user';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../_services/auth.service';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-tblmovie',
@@ -12,7 +16,8 @@ import { AlertifyService } from '../_services/alertify.service';
 })
 export class TblmovieComponent implements OnInit {
   tblmovies: any;
-    pagination: Pagination;
+  user: User;
+  pagination: Pagination;
    pageNumber=1;
    pageSize=100;
    
@@ -20,12 +25,17 @@ export class TblmovieComponent implements OnInit {
    movieParams: any={};
   
   search;
-  constructor(private http: HttpClient,private alertify:AlertifyService) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute,
+    private userService: UserService,private alertify:AlertifyService, private authService: AuthService) { }
 
   ngOnInit() {
     this.getValues();
     this.movieParams.orderBy= 'rentalprice';
     this.pagination.currentPage = 0;
+    // this.route.data.subscribe(data=>{
+    //   this.user = data['user'];
+    // });
+    //this.loadUserMovies();
   }
 
   pageChanged(event: any): void {
@@ -63,6 +73,14 @@ export class TblmovieComponent implements OnInit {
   loadUsers(){
     this.getValues(this.pagination.currentPage,this.pagination.itemsPerPage)
   }
+
+  // loadUserMovies(){
+  //   this.http.get('http://localhost:5000/api/users/'+this.authService.decodedToken.nameid).subscribe(response=>{
+  //   this.user = response;
+  // },error=>{
+  //   this.alertify.error(error);
+  // }); 
+  // }
 
   //(response : PaginatedResult<any>)
 }

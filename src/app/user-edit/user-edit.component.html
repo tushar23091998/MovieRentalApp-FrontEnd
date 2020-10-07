@@ -21,7 +21,7 @@
                 <strong>Information:</strong>You have made some changes, Any unsaved changes will be lost!
             </div>
             <div>
-                <h4>Edit Profile:</h4>
+                <h4>Edit Profile:</h4>    <button *ngIf="user.aAdmin" class="nav-link btn btn-outline-danger" [routerLink]="['/admin']">Admin</button>
                 <br>
             </div>
             <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">

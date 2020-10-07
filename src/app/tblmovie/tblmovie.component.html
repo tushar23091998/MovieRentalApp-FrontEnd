@@ -4,8 +4,11 @@
      style="color: #919191 ; background-color: #333; border: 2px solid #333;" 
      placeholder="Search" 
      aria-label="Search">
-    <button class="btn btn-outline-danger my-2 my-sm-0" 
-    type="submit">Search</button>
+    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+    <!-- <div style="padding-left: 50px;">
+      <button *ngIf="this.user.aAdmin" class="btn btn-outline-danger my-2 my-sm-0"  [routerLink]="['/admin']">Admin</button>
+    </div> -->
+    
     <div class="col">
       <div class="btn-group float-right" style="padding-right: 10px;">
         <button type="button" name="orderBy" class="btn btn-outline-danger" 

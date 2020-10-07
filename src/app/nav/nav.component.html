@@ -10,10 +10,12 @@
       <li *ngIf="!signedIn" class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/register']" >Register</a>
       </li> 
-      
-      <li *ngIf="signedIn" class="nav-item" routerLinkActive="active">
+      <!-- <li *ngIf="signedIn" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/users']" >Users</a>
+      </li>  -->
+      <!-- <li *ngIf="signedIn" class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/admin']">Admin</a>
-      </li>
+      </li> -->
       <li *ngIf="signedIn" class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/cart',authService.decodedToken.nameid]">Cart <span class="badge badge-dark"> {{cartItemCount}}  </span></a>   
       </li>
