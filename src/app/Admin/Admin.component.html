@@ -73,6 +73,47 @@
       </form>
     </div>  
   </div>
+  <div>
+    <div *ngIf="this.deleteMode" class="container" style="padding-top: 40px;">
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2 " type="text" name="search" [(ngModel)]="search" autocomplete = "off" box-sizing="border-box"
+         style="color: #919191 ; background-color: #333; border: 2px solid #333;" 
+         placeholder="Search" 
+         aria-label="Search">
+        <button class="btn btn-outline-danger my-2 my-sm-0" 
+        type="submit">Search</button>
+        </form>
+        <div style="padding-top: 40px;">
+          <table class="table table-striped table-dark"  >
+            <thead>
+              <tr>
+                <th scope="col">Movie Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Duration</th>
+                <th scope="col">Rental Price</th>
+                <th scope="col">Purchase Price</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Genre</th>
+                <th scope="col">&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let movie of movies | filter:search">
+                <th scope="row">{{movie.aMovieId}}</th>
+                <td>{{movie.aTitle}}</td>
+                <td>{{movie.aDuration}}</td>
+                <td>{{movie.aPrice}}</td>
+                <td>{{movie.aPurchasePrice}}</td>
+                <td>{{movie.aRating}}</td>
+                <td>{{movie.aGenre}}</td>
+                <td><a class="nav-link" href="#" (click)="deleteMovie(movie.aMovieId)" >Delete</a></td>
+              </tr> 
+            </tbody>
+          </table>
+        </div>
+      
+  </div>
+</div>
 </div>
 
 

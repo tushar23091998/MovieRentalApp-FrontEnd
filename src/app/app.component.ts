@@ -17,8 +17,14 @@ export class AppComponent implements OnInit {
   cartItemCount:any;
   ngOnInit(){
     this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
-    this.cartItemCount = this.sharedService.getMoviesFromCart().length;
-    this.sharedService.updateCartCount(this.cartItemCount);
+    if(this.moviesAddedTocart == null){
+      this.sharedService.updateCartCount(0);
+    }
+    else{
+      this.cartItemCount = this.sharedService.getMoviesFromCart().length;
+      this.sharedService.updateCartCount(this.cartItemCount);
+    }
+
     // const token = localStorage.getItem('token');
     // if(token){
     //   this.authService.decodedToken = this.jwtHelper.decodeToken(token);
