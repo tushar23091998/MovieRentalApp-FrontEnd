@@ -28,7 +28,6 @@
         <th scope="col">Address</th>
         <th scope="col">Age</th>
         <th scope="col">Admin</th>
-        <th scope="col">Movies Rented</th>
         <th scope="col">Orders</th>
       </tr>
     </thead>
@@ -42,7 +41,6 @@
         <td>{{user.aAddress}}</td>
         <td>{{user.age}}</td>
         <td>{{user.aAdmin}}</td>
-        <td>{{user.aMoviesRented}}</td>
         <td><a class="nav-link" [routerLink]="['/users',user.aCustomerId]">Orders</a></td>
       </tr> 
     </tbody>

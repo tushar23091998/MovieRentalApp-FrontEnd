@@ -50,9 +50,16 @@ export class CartComponent implements OnInit {
       this.sharedService.removeMovieFromCart(movie.aMovieId);
       this.calculateTotal();
       this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
-      this.cartItemCount = this.moviesAddedTocart.length;
-      console.log(this.cartItemCount);
-      this.sharedService.updateCartCount(this.cartItemCount);
+      if(this.moviesAddedTocart === null){
+        this.cartItemCount = 0;
+        console.log(this.cartItemCount);
+        this.sharedService.updateCartCount(this.cartItemCount);
+      }
+      else{
+        this.cartItemCount = this.moviesAddedTocart.length;
+        console.log(this.cartItemCount);
+        this.sharedService.updateCartCount(this.cartItemCount);
+      }
     }
   }
 
@@ -65,6 +72,10 @@ export class CartComponent implements OnInit {
   //  this.allTotal=total;
   // }
 
+  checkOut(){
+
+  }
+  
   clearCart(){
     this.sharedService.removeAllMovieFromCart();
     this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
@@ -91,8 +102,14 @@ export class CartComponent implements OnInit {
   calculateTotal()
   {
     this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
-    this.totalPrice = 0;
-    for (let index = 0; index < this.moviesAddedTocart.length; index++) {
+    if(this.moviesAddedTocart === null){
+      this.cartItemCount =0;
+      this.totalPrice = 0;
+    }
+    else{
+      this.cartItemCount= this.moviesAddedTocart.length;
+      this.totalPrice = 0;
+    for (let index = 0; index < this.cartItemCount; index++) {
       const element = this.moviesAddedTocart[index];
       if(this.typeArray.get(element.aMovieId) === "Rental"){
         this.totalPrice += Number(element.aPrice);
@@ -102,6 +119,6 @@ export class CartComponent implements OnInit {
         this.totalPrice += Number(element.aPurchasePrice);
       }
     }
+    }    
   }
-
 }

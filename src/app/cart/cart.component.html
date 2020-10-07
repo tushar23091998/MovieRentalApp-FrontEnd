@@ -1,12 +1,12 @@
 <div class="container login_container" style="padding-top: 60px; color: white;">
   <div>
     <h1>{{user.aname | titlecase}}'s Cart</h1>
-    <span  style="color: white">Total value is: {{totalPrice}}  &nbsp; <button type="button" (click)="clearCart()" class="btn btn-outline-danger"  >Clear All</button></span>
+    
   </div>
   <div  class="container">
     <div class="row">
       <div class="col-sm-6">
-        <table  width="100%" class="table  table-responsive table-hover" style="padding-top: 20px; color: white;">
+        <table class="table  table-responsive table-hover" style="padding-top: 20px; color: white;">
           <tr>
               <th colspan="4">
                   Movie
@@ -45,7 +45,41 @@
             
           </div>
           </table>
+          Due Date for Rental Movies will be 7 days after the ordered date!
       </div>
-    </div>  
+      <div class="col-sm-6">
+        <span  style="color: white">Total value is: {{totalPrice}}  &nbsp; <button type="button" (click)="clearCart()" class="btn btn-outline-danger"  >Clear All</button>
+          &nbsp; <button type="button" *ngIf="this.cartItemCount > 0" (click)="checkOut()" class="btn btn-outline-danger"  >Pay and CheckOut</button>
+        </span>
+        <div style="padding-top: 20px;"> 
+          <h4>User details for order</h4>
+          <br>
+      </div>
+      <form #editForm="ngForm" id="editForm">
+          <div>
+              <strong>Name: </strong>
+              <br>
+              <textarea style="width: 200px;" name="aname" rows="1" class="form-control" [(ngModel)]="user.aname"></textarea>
+              <br>
+          </div>
+          <div>
+              <strong>Address:</strong>
+              <br>
+              <textarea style="width: 500px;" name="aAddress" rows="1" class="form-control" [(ngModel)]="user.aAddress"></textarea>
+              <br>
+            </div>
+            <div>
+              <strong>Phone:</strong>
+              <br>
+              <textarea style="width: 200px;" name="aPhone" rows="1" class="form-control" [(ngModel)]="user.aPhone"></textarea>
+              <br>
+            </div>
+          </form>
+          <div>
+              <strong>No. of Movies in Cart:</strong>
+              <p>  {{this.cartItemCount}}</p>
+          </div>
+      </div>
+    </div>
   </div>
 </div>
