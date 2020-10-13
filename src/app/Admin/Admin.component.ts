@@ -34,12 +34,13 @@ export class AdminComponent implements OnInit {
   }
 
   addMovie(model :any){
-    this.http.post('http://localhost:5000/api/movies',model).subscribe(() => {
+    this.http.post('http://localhost:5000/api/movies', model).subscribe(() => {
           this.alertify.success('Movie added successfully');
         }, error => {
           console.log(error);
           this.alertify.error(error);
       });
+      this.router.navigate(['/movies']);
   }
 
   getValues(){

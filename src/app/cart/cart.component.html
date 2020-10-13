@@ -49,7 +49,7 @@
       </div>
       <div class="col-sm-6">
         <span  style="color: white">Total value is: {{totalPrice}}  &nbsp; <button type="button" (click)="clearCart()" class="btn btn-outline-danger"  >Clear All</button>
-          &nbsp; <button type="button" *ngIf="this.cartItemCount > 0" (click)="checkOut()" class="btn btn-outline-danger"  >Pay and CheckOut</button>
+          &nbsp; <button type="button" *ngIf="checkOutValid()" (click)="checkOut()" class="btn btn-outline-danger"  >Pay and CheckOut</button>
         </span>
         <div style="padding-top: 20px;"> 
           <h4>User details for order</h4>

@@ -67,7 +67,7 @@
           <input class="form-control" name="aWideImage" type="text" placeholder="Wide Image" required
             [(ngModel)]="model.aWideImage" />
         </p>
-        <button (click)="movieForm.resetForm()" [disabled]="!movieForm.valid" class=" btn btn-outline-danger" type="submit">
+        <button (click)="this.addMovie(model)" [disabled]="!movieForm.valid" class=" btn btn-outline-danger" type="submit">
           Add Movie</button>
           <br>
       </form>

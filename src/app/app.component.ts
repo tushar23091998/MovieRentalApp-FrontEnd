@@ -10,6 +10,7 @@ import { SharedcartService } from './_services/sharedcart.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title: any;
  //jwtHelper = new JwtHelperService();
 
   constructor(private authService : AuthService, private sharedService: SharedcartService){}

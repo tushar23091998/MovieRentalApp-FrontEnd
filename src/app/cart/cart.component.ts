@@ -170,4 +170,32 @@ export class CartComponent implements OnInit {
     }
     }    
   }
+
+  checkOutValid()
+  {
+    let flag = false;
+    this.moviesAddedTocart=this.sharedService.getMoviesFromCart();
+    if(this.moviesAddedTocart === null){
+      this.cartItemCount =0;
+      this.totalPrice = 0;
+    }
+    else{
+      this.cartItemCount= this.moviesAddedTocart.length;
+      this.totalPrice = 0;
+    for (let index = 0; index < this.cartItemCount; index++) {
+      const element = this.moviesAddedTocart[index];
+      if(this.typeArray.get(element.aMovieId) !== "Rental" && this.typeArray.get(element.aMovieId) !== "Purchased"){
+        flag = true;
+      }
+    }
+
+    if(flag === false && this.cartItemCount > 0){
+      return true;
+    }
+    else{
+      return false;
+    }
+    }
+    
+  }
 }
