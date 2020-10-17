@@ -37,7 +37,7 @@
           <div class="pass">
             <label for="password">🇨‌🇴‌🇳‌🇫‌🇮‌🇷‌🇲‌ 🇵‌🇦‌🇸‌🇸‌🇼‌🇴‌🇷‌🇩‌</label>
             <br>
-            <input formControlName="confirmPassword"
+            <input formControlName="confirmPassword" id="confirm"
             [ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors  &&  
             registerForm.get('confirmPassword').touched
             || registerForm.get('confirmPassword').touched
@@ -83,7 +83,7 @@
 
           <!-- <button  class="btn btn-outline-danger my-2 my-sm-0" type="submit">Sign Up</button> -->
           <div class="form-group text-center" style="padding-top: 20px;">
-            <button [disabled]="!registerForm.valid" class="btn btn-outline-danger my-2 my-sm-0 mr-2" type="submit">Sign
+            <button [disabled]="!registerForm.valid" id="button" class="btn btn-outline-danger my-2 my-sm-0 mr-2" type="submit">Sign
               Up</button>
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="onReset()">Cancel</button>
           </div>

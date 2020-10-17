@@ -8,63 +8,63 @@
     <div class="login_div" style="padding-bottom: 30px;">
       <form #movieForm="ngForm" class="form text-center" style="margin-top:-20px;" id="form1" (ngSubmit)="addMovie(model)">
         <p class="form-group">
-          <label >Movie Title </label>
+          <label for="title">Movie Title </label>
           <br />
-          <input class="form-control" name="aTitle" type="text"  placeholder="Movie Title" required
+          <input class="form-control" name="aTitle" type="text" id="title" placeholder="Movie Title" required
             [(ngModel)]="model.aTitle" />
         </p>
         <p class="form-group">
-          <label>Description</label>
+          <label for="description">Description</label>
           <br />
-          <input class="form-control" name="aMovieDescription" type="text" placeholder="Description" required
+          <input class="form-control" name="aMovieDescription" id="description" type="text" placeholder="Description" required
             [(ngModel)]="model.aMovieDescription" />
         </p>
         <p class="form-group">
-          <label>Duration</label>
+          <label for="duration">Duration</label>
           <br />
-          <input class="form-control" name="aDuration" type="text" placeholder="Duration" required
+          <input class="form-control" name="aDuration" id="duration" type="text" placeholder="Duration" required
             [(ngModel)]="model.aDuration" />
         </p>
         <p class="form-group">
-          <label>Rental Price</label>
+          <label for="price">Rental Price</label>
           <br />
-          <input class="form-control" name="aPrice" type="text" placeholder="Rental Price" required
+          <input class="form-control" name="aPrice" id="price" type="text" placeholder="Rental Price" required
             [(ngModel)]="model.aPrice" />
         </p>
         <p class="form-group">
-          <label>Purchase Price</label>
+          <label for="purchase">Purchase Price</label>
           <br />
-          <input class="form-control" name="aPurchasePrice" type="text" placeholder="Purchase Price" required
+          <input class="form-control" name="aPurchasePrice" id="purchase" type="text" placeholder="Purchase Price" required
             [(ngModel)]="model.aPurchasePrice" />
         </p>
         <p class="form-group">
-          <label>Rating</label>
+          <label for="rating">Rating</label>
           <br />
-          <input class="form-control" name="aRating" type="text" placeholder="Rating" required
+          <input class="form-control" name="aRating" id="rating" type="text" placeholder="Rating" required
             [(ngModel)]="model.aRating" />
         </p>
         <p class="form-group">
-          <label>Image Link</label>
+          <label for="image">Image Link</label>
           <br />
-          <input class="form-control" name="aImageLink" type="text" placeholder="Image Link" required
+          <input class="form-control" name="aImageLink" id="image" type="text" placeholder="Image Link" required
             [(ngModel)]="model.aImageLink" />
         </p>
         <p class="form-group">
-          <label>Trailer Link</label>
+          <label for="trailer">Trailer Link</label>
           <br />
-          <input class="form-control" name="aTrailerLink" type="text" placeholder="Trailer Link" required
+          <input class="form-control" name="aTrailerLink" id="trailer" type="text" placeholder="Trailer Link" required
             [(ngModel)]="model.aTrailerLink" />
         </p>
         <p class="form-group">
-          <label>Genre</label>
+          <label for="genre">Genre</label>
           <br />
-          <input class="form-control" name="aGenre" type="text" placeholder="Genre" required
+          <input class="form-control" name="aGenre" id="genre" type="text" placeholder="Genre" required
             [(ngModel)]="model.aGenre" />
         </p>
         <p class="form-group">
-          <label>Wide Image</label>
+          <label for="wide">Wide Image</label>
           <br />
-          <input class="form-control" name="aWideImage" type="text" placeholder="Wide Image" required
+          <input class="form-control" name="aWideImage" id="wide" type="text" placeholder="Wide Image" required
             [(ngModel)]="model.aWideImage" />
         </p>
         <button (click)="this.addMovie(model)" [disabled]="!movieForm.valid" class=" btn btn-outline-danger" type="submit">

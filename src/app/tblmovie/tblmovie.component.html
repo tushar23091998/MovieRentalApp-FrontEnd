@@ -11,9 +11,9 @@
     
     <div class="col">
       <div class="btn-group float-right" style="padding-right: 10px;">
-        <button type="button" name="orderBy" class="btn btn-outline-danger" 
+        <button type="button" name="orderBy" id="ratings" class="btn btn-outline-danger" 
         [(ngModel)]="movieParams.orderBy" (click)="getValues()" btnRadio="rating">Ratings</button>
-        <button type="button" name="orderBy" class="btn btn-outline-danger"
+        <button type="button" name="orderBy" id="rentalprice" class="btn btn-outline-danger"
          [(ngModel)]="movieParams.orderBy" (click)="getValues()" btnRadio="rentalprice">Rental Price</button>
       </div>
     </div>
@@ -23,8 +23,8 @@
   <div class="row">
     <!-- <div class=" text-center"> -->
       <div *ngFor="let tblmovie of tblmovies | filter:search" class="col-lg-3 col-md-4 col-sm-6">
-        <div class=' bg-black dib br1 pa1   ma2 grow bw2 shadow-5 item' style="max-width:230px; max-height:380px ;overflow:hidden; border: blanchedalmond;">
-          <a [routerLink]="['/movies',tblmovie.aMovieId]" ><img class="border border-white" width=230px height=300px alt='movieImage'   src = {{tblmovie.aImageLink}}/></a>
+        <div class=' bg-black dib br1 pa1  ma2 grow bw2 shadow-5 item' style="max-width:230px; max-height:380px ;overflow:hidden; border: blanchedalmond;">
+          <a [routerLink]="['/movies',tblmovie.aMovieId]" ><img class="border border-white" width=230px height=300px alt='movieImage' src = {{tblmovie.aImageLink}}/></a>
           <div  class="text-center">
             <h6 max-width=200px max-height=320px style="color:white; overflow: hidden;">{{tblmovie.aTitle}}</h6> 
             <p  style="color:white;">{{tblmovie.aPrice}}$
