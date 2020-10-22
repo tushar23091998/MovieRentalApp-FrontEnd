@@ -40,7 +40,7 @@ export class AdminComponent implements OnInit {
           console.log(error);
           this.alertify.error(error);
       });
-      this.router.navigate(['/movies']);
+      this.router.navigate(['/home']);
   }
 
   getValues(){

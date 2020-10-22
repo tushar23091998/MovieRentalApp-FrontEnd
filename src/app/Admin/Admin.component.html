@@ -1,8 +1,8 @@
 <div class="container" style="padding-top: 80px;">
   <form class="form-inline my-2 my-lg-0">
-    <button class="nav-link btn btn-outline-danger" [routerLink]="['/users']">Users</button>
-    <button (click)="addToggle()" class="nav-link btn btn-outline-danger">Add Movie</button>
-    <button (click)="deleteToggle()" class="nav-link btn btn-outline-danger">Delete Movie</button>
+    <button id="userdetail" class="nav-link btn btn-outline-danger" [routerLink]="['/users']">Users</button>
+    <button id="addmoviebtn" (click)="addToggle()" class="nav-link btn btn-outline-danger">Add Movie</button>
+    <button id="deletemoviebtn" (click)="deleteToggle()" class="nav-link btn btn-outline-danger">Delete Movie</button>
   </form>
   <div *ngIf="this.addMode" style="padding-top: 50px;">
     <div class="login_div" style="padding-bottom: 30px;">
@@ -67,7 +67,7 @@
           <input class="form-control" name="aWideImage" id="wide" type="text" placeholder="Wide Image" required
             [(ngModel)]="model.aWideImage" />
         </p>
-        <button (click)="this.addMovie(model)" [disabled]="!movieForm.valid" class=" btn btn-outline-danger" type="submit">
+        <button (click)="this.addMovie(model)" [disabled]="!movieForm.valid"  class=" btn btn-outline-danger" id="addButton" type="submit">
           Add Movie</button>
           <br>
       </form>
@@ -106,7 +106,7 @@
                 <td>{{movie.aPurchasePrice}}</td>
                 <td>{{movie.aRating}}</td>
                 <td>{{movie.aGenre}}</td>
-                <td><a class="nav-link" href="#" (click)="deleteMovie(movie.aMovieId)" >Delete</a></td>
+                <td><a id="delete-link" class="nav-link" href="#" (click)="deleteMovie(movie.aMovieId)">Delete</a></td>
               </tr> 
             </tbody>
           </table>

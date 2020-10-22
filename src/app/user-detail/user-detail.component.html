@@ -8,7 +8,7 @@
       <owl-carousel-o [options]="customOptions">
       <ng-container  *ngFor="let index of user.tblOrder; index as i">
         <ng-template width=200px height=500px carouselSlide [id]="" *ngIf="user.tblOrder[i].aRentalOrNot">
-            <div class=' carousel-item bg-black dib br1    ma2 grow bw2 shadow-5'
+            <div class=' carousel-item bg-black dib br1  rent-list  ma2 grow bw2 shadow-5'
               style="max-width:220px; max-height:500px ;overflow:hidden;">
               <a [routerLink]="['/movies',user.tblOrder[i].aMovie.aMovieId]" ><img class="border border-white" width=230px height=300px alt='movieImage'   src = {{user.tblOrder[i].aMovie.aImageLink}}/></a>
               <div  class="text-center">
@@ -31,7 +31,7 @@
     <owl-carousel-o [options]="customOptions">
       <ng-container *ngFor="let index of user.tblOrder; index as i">
         <ng-template width=230px height=500px carouselSlide [id]="" *ngIf="!user.tblOrder[i].aRentalOrNot">
-            <div class='carousel-item bg-black dib br1 ma2 grow bw2 shadow-5' style="max-width:220px; max-height:500px ;overflow:hidden;">
+            <div class='carousel-item bg-black purchase-list dib br1 ma2 grow bw2 shadow-5' style="max-width:220px; max-height:500px ;overflow:hidden;">
               <a [routerLink]="['/movies',user.tblOrder[i].aMovie.aMovieId]" ><img class="border border-white" width=230px height=300px alt='movieImage'   src = {{user.tblOrder[i].aMovie.aImageLink}}/></a>
               <div  class="text-center">
                 <h6 max-width=200px max-height=320px style="color:white; overflow: hidden;">{{user.tblOrder[i].aMovie.aTitle}}</h6> 
